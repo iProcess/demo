@@ -1,0 +1,13 @@
+student:
+ name: 张三2
+ age: 30
+ address: 北京大兴区2
+
+teacher: "name:${student.name}, age:${student.age}, address:${student.address}"
+
+customer:
+  name: 李四2
+  age: 30
+  address: 北京海淀区2
+  totalPrice: 2000
+  totalOrder: 20

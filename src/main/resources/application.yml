@@ -1,0 +1,18 @@
+spring:
+# profiles配置
+ profiles:
+  active: prod
+# mysql配置
+ datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+  username: root
+  password: root
+# jpa配置
+ jpa:
+  properties:
+   hibernate:
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hbm2ddl:
+     auto: update
+  show-sql: true

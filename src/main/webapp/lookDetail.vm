@@ -1,0 +1,222 @@
+#parse("/vm/topMenuId.vm")
+#set($menuId = 8201)
+#set($title=$resourceContext.get("pop.crm.shop.vm.lookdetail.membershipdetail"))
+#set($layout="newframe2.vm")
+
+
+<link type="text/css" rel="stylesheet"  href="//static.360buyimg.com/shop/pop_shop_uibase1.0.0/??css/ui-base.css,css/layout.css,widget/member-header/member-header.css,widget/shop-menu-set/shop-menu-set.css,widget/message/message.css"/>
+<script type="text/javascript" src="//misc.360buyimg.com/jdf/??lib/jquery-1.6.4.js,1.0.0/unit/base/1.0.0/base.js"></script>
+
+<link rel="stylesheet" href="//static.360buyimg.com/shop/2015/crm/skin/crm.index.css"/>
+
+<script src="//static.360buyimg.com/shop/js/jdThickBox.0.0.4.js"></script>
+<script type="text/javascript" src="/common/js/customerPoints.js"></script>
+<script type="text/javascript" src="//static.360buyimg.com/??shop/pop_shop_uibase1.0.0/js/frame.js,shop/pop_shop_uibase1.0.0/js/lib2016.js" source="widget"></script>
+
+
+<link rel="stylesheet" href="//static.360buyimg.com/shop/2014/skin/common/common.css">
+<link rel="stylesheet" href="//static.360buyimg.com/shop/2014/skin/header/crm.css">
+<link rel="stylesheet" href="//static.360buyimg.com/shop/2014/skin/crm/crm.css?t=20160112">
+
+
+<script src="$!marketModule.getTarget('common/js/customer/customerManager.js')" type="text/javascript"></script>
+##------老版代码 start------
+<script language="javascript" src="$!marketModule.getTarget('common/js/im/customerLabelMapping.js?rnd=20140212')"></script>
+##------老版代码 end------
+
+<style>
+    .curr_position{
+        margin-left: 0;
+    }
+    .grade-4,.icon-client-web,.icon-client-mobile{
+        cursor: default;
+    }
+</style>
+
+<h2 class="title" style="margin: 20px;">$resourceContext.get("pop.crm.shop.vm.lookdetail.membershipdetails")</h2>
+
+<div class="m mt10" style="margin: 0 20px">
+    <div class="box bt2 bb0 p10 gray mt">
+        <h3 class="title">$!{customerView.customerPin}</h3>
+        <input type="hidden" name="customerPin_hidden" id="customerPin_hidden" value="$!stringEscapeUtils.escapeHtml($!{customerView.customerPin})" />
+                <span class="grade mr20">
+                    <i class="grade-4"></i>
+                    <span class="black">$!{customerView.levelAtJd}</span>
+                </span>
+
+                <span class="mr20">
+                    <span class="title">$resourceContext.get("pop.crm.shop.vm.lookdetail.marketingshielding")</span>
+                    <span class="black" id="shieldSpan">#if($!customerView.shield==1)$resourceContext.get("pop.crm.shop.vm.lookdetail.unscreened")#elseif($!customerView.shield==2)$resourceContext.get("pop.crm.shop.vm.lookdetail.screened")#end
+                    </span>
+                </span>
+    </div>
+    <div class="box p10 bb0 info-list mc">
+        <div class="list-item full">
+            <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.membershipstatus")</div>
+            <div class="list-content"> <strong>$!{customerView.customerStatusStr}</strong>
+            </div>
+        </div>
+        <div class="list-item full">
+            <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.shopmembershiplevel")</div>
+            #if($!levelName)
+                <div class="list-content"><strong>$!levelName</strong></div>
+            #else
+                <div class="grade-wrap">
+                    <i class="g$!{customerView.levelShop}"></i>
+                </div>
+            #end
+        </div>
+        <div class="list-item full" style="display:none">
+            <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.shopage")</div>
+            <div class="list-content">
+                <strong>$!{customerView.customerAge}</strong>
+            </div>
+        </div>
+        <div class="list-item full">
+            <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.firstpurchasetime")</div>
+            <div class="list-content">
+                <strong>$!{customerView.customerDate}</strong>
+            </div>
+        </div>
+    ##------老版代码 start------
+##        <div class="list-item full">
+##            <div class="list-title">会员标签：</div>
+##            <div class="list-content" id="customerLabelTD">
+##                <div class="tag-list" style="height: 30px;">
+##                    <a href="javascript:void(0);" class="more" onclick="showMoreLabelD()" id="showLabelMore">+ 查看更多</a>
+##                    <a style="display:none" href="javascript:void(0);" class="more" onclick="showLessLabelD()" id="showLabelLess">- 收起更多</a>
+##                    #foreach($!customerLabel in $!customerLabels)
+##                        <div class="tag-item">
+##                            <input type="checkbox" id="$!{customerLabel.id}" name="customerLabel"  value="" onclick="addCheckPram(this);"
+##                                #foreach($!labelMapping in $!customerLabelMappings)
+##                                    #if($!{labelMapping.id} == $!{customerLabel.id}) checked="checked" #end
+##                                #end
+##                                    />
+##                            <label for="$!{customerLabel.id}" title="$!stringEscapeUtils.escapeHtml($!{customerLabel.labelName})">$!stringEscapeUtils.escapeHtml($!{customerLabel.labelName})</label>
+##                            <input type="hidden" name="hiddenCheckd_$!{customerLabel.id}" id="hiddenCheckd_$!{customerLabel.id}"
+##                                #foreach($!labelMapping in $!customerLabelMappings)
+##                                    #if($!{labelMapping.id} == $!{customerLabel.id}) value="1" #end
+##                                #end
+##                                    />
+##                        </div>
+##                    #end
+##                </div>
+##            </div>
+##        </div>
+    ##------老版代码 end------
+        <div class="list-item">
+            <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.lasttradingtime")</div>
+            <div class="list-content">
+                <strong>$!{customerView.lastOrderDate}</strong>
+            </div>
+        </div>
+        <div class="list-item">
+            <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.nextsingleterminal")</div>
+            <div class="list-content">
+                #if($!customerView.pcFlag == 94)
+                    <i class="icon-client-web"></i>
+                #end
+                #if($!customerView.phoneFlag == 94)
+                    <i class="icon-client-mobile"></i>
+                #end
+                #if($!customerView.wxFlag == 94)
+                    <i class="icon-client-wx"></i>
+                #end
+            </div>
+        </div>
+    </div>
+    <div class="box purchase-list">
+        <div class="p-list-item wide-33per">
+            <h4 class="title">$resourceContext.get("pop.crm.shop.vm.lookdetail.purchaseinformation")</h4>
+            <div class="info-list">
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.averageunitprice")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.avgOrderPrice}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.element")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.quantityofgoodspurchased")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.totalGoodsCount}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.piece")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.numberoftransactions")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.totalOrderCount}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.pen")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.totaltransactions")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.totalOrderPrice}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.element")</div>
+                </div>
+            </div>
+        </div>
+        <div class="p-list-item wide-33per">
+            <h4 class="title">$resourceContext.get("pop.crm.shop.vm.lookdetail.returnandexchangeinformation")</h4>
+            <div class="info-list">
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.quantityofreturns")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.canceledGoodsCount}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.pen")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.amountofrefund")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.canceledOrderPrice}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.element")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.exchangequantity")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.changedOrderCount}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.pen")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">&nbsp;</div>
+                    <div class="list-content">&nbsp;</div>
+                </div>
+
+            </div>
+        </div>
+        <!-- .p-list-item -->
+        <div class="p-list-item wide-33per">
+            <h4 class="title">$resourceContext.get("pop.crm.shop.vm.lookdetail.cancelinformation")</h4>
+            <div class="info-list">
+                <div class="list-item full">
+                    <div class="list-title">$resourceContext.get("pop.crm.shop.vm.lookdetail.numberofcancellations")</div>
+                    <div class="list-content">
+                        <strong>$!{customerView.deletedOrderCount}</strong>$resourceContext.get("pop.crm.shop.vm.lookdetail.pen")</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">&nbsp;</div>
+                    <div class="list-content">&nbsp;</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">&nbsp;</div>
+                    <div class="list-content">&nbsp;</div>
+                </div>
+                <div class="list-item full">
+                    <div class="list-title">&nbsp;</div>
+                    <div class="list-content">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="ui-btn-group center">
+    <!-- 采用空div占位置，浏览器兼容待注意 -->
+    <div style="float: left;width: 40%;">&nbsp;</div>
+##    <div clstag="pageclick|keycount|shop_crm_201511191|35" style="float: left;">
+##        <input value="保 存" class="ui-btn mr20" type="button" onclick="doEditLabelMapping('$!marketModule.getTarget('/crm/customerManager/customer_doEditLabelMapping.action')');"/>
+##    </div>
+    <div clstag="pageclick|keycount|shop_crm_201511191|34" style="float: left;">
+        <input value="$resourceContext.get("pop.crm.shop.vm.lookdetail.return")" onclick="location='$marketModule.getTarget("/crm/customerManager/customer_init.action")'" class="ui-btn-vice" type="reset">
+    </div>
+
+    <span id="resultDiv" style="color:red" ></span>
+##------老版代码 start------
+    <input type="hidden" name="hiddenCheckPram" id="hiddenCheckPram" >
+    <input type="hidden" name="hiddenCheckLoop" id="hiddenCheckLoop" >
+    <input type="hidden" name="hiddenVenderID" id="hiddenVenderID" value="$!vender_ID" >
+##------老版代码 end------
+</div>
