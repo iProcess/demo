@@ -2,10 +2,8 @@ package com.example.demo.jdk8.lst;
 
 import com.alibaba.fastjson.JSON;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author shijincheng
@@ -16,19 +14,22 @@ import java.util.Map;
 public class TestList {
 
     /** 中台查询sku的最大个数 */
-    public static final Integer SKU_MAX_NUM = 6;
+    public static final Integer SKU_MAX_NUM = 10;
 
     public static void main(String[] args) {
 
-        List<Long> skuList = new ArrayList<>();
-        skuList.add(1L);
-        skuList.add(2L);
-        skuList.add(3L);
-        skuList.add(4L);
-        skuList.add(5L);
+        int j = 1000;
+        while (j > 0){
+            List<Long> skuList = new ArrayList<>();
+            for(Long i = 0L; i < 19L; i++){
+                skuList.add(i);
+            }
+            TestList list = new TestList();
+            list.getCustomerDoublePrice(skuList, "test");
+            skuList.clear();
+            j--;
+        }
 
-        TestList list = new TestList();
-        list.getCustomerDoublePrice(skuList, "test");
     }
 
     /**
@@ -44,7 +45,11 @@ public class TestList {
         int pageCount =  temp > 0? (totalCount / TestList.SKU_MAX_NUM) + 1: totalCount / TestList.SKU_MAX_NUM;
 
         for (int i = 1; i <= pageCount; i++) {
-            List<String> subSkuList = new ArrayList<>();
+//            List<String> subSkuList = new ArrayList<>();
+//            Vector<String> subSkuList = new Vector<>();
+//            List<String> subSkuList = Collections.synchronizedList(new ArrayList<>());
+            List<String> subSkuList = new CopyOnWriteArrayList();
+
             if (i == pageCount) {
                 skuList.subList((i - 1) * TestList.SKU_MAX_NUM, totalCount).parallelStream()
                         .forEach(x -> {subSkuList.add(String.valueOf(x));});
@@ -53,6 +58,11 @@ public class TestList {
                         .forEach(x -> {subSkuList.add(String.valueOf(x));});;
             }
             System.out.println(JSON.toJSONString(subSkuList));
+            if(subSkuList == null || subSkuList.size() <= 8 || subSkuList.contains(null)){
+                System.out.println(JSON.toJSONString(subSkuList));
+                throw new RuntimeException("出错啦!");
+            }
+
         }
         return totalMap;
     }
