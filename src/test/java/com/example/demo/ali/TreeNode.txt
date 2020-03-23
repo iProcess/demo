@@ -1,0 +1,53 @@
+//题目1：请基于以下数节点信息构建一棵树，构建树。节点信息如下（getter和setter方法省略）
+public class TreeNode<T> {
+    private String            myCode;
+    private String            parentCode;
+    private TreeNode<T>       parentNode;
+    private List<TreeNode<T>> children = new ArrayList<>;
+    private T                 data;
+
+  public TreeNode(String myCode, String parentCode, T data){
+    this.myCode = myCode;
+    this.parentCode = parentCode;
+    this.data = data;
+  }
+
+  }
+
+
+
+}
+// 原始的节点数据如下(三个字段用逗号分隔，假设各字段均不包含逗号：节点key，父节点key，当前节点data)
+// files,root,files_data
+// m1,musics,She'll be loved
+// root,,root_data
+// musics,root,musics_data
+// m2,musics,Hey Soul Sister
+
+//main方法：
+
+TreeNode root = new TreeNode("root", "", "root_data");
+
+TreeNode files = new TreeNode("files", "root", "files_data");
+TreeNode musics = new TreeNode("musics", "root", "musics_data");
+
+List<TreeNode<T>> rootChildren = new ArrayList<>;
+rootChildren.add(files);
+rootChildren.add(musics);
+root.setChildren(rootChildren)
+
+TreeNode m1 = new TreeNode("m1", "musics", "She'll be loved");
+TreeNode m2 = new TreeNode("m2", "musics", "Hey Soul Sister");
+
+List<TreeNode<T>> musicsChildren = new ArrayList<>;
+musicsChildren.add(m1);
+musicsChildren.add(m2);
+musics.setChildren(musicsChildren)
+
+
+//题目2：有两个线程A,B，+线程A负责向队列Q中不停的写入数据，线程B负责从队列Q不停的读取数据并输出，要求两个线程并发执行。
+// 请实现此队列，要求保证该的队列是线程安全的，同时给出使用队列的示例代码
+//要求：
+//1、不允许使用jdk现有的任何Queue实现类
+//2、请勿查询在线资料
+
