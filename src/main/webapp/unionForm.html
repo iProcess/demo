@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/jquery-1.8.3.js"></script>
+</head>
+<body>
+<form style="display:none" action="/crm/shopNewLevel/unionUpload.action" method="post" enctype="multipart/form-data">
+    　　<input type="file" name="file" value="">
+</form>
+<a href="javascript:;" class="import">上传文件</a>
+
+<!--  记得载入jquery文件 -->
+
+<script>
+    $('.import').click(function(){
+        $(this).prev('form').find('[name="file"]').trigger('click');
+    });
+
+    // 当表单文件有变化时执行提交动作
+
+    $('[name="file"]').change(function(){
+        if($(this).val()){
+            $('.import').addClass('disabled' );
+            $(this).parent().submit();
+        }
+    });
+</script>
+</body>
+</html>
