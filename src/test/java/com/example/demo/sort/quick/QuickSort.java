@@ -1,10 +1,18 @@
 package com.example.demo.sort.quick;
 
-import com.example.demo.sort.insert.InsertSort;
 import com.example.demo.sort.util.SortUtils;
 
 /**
  * 快速排序
+ * https://blog.csdn.net/zzzgd_666/article/details/87634775
+ * 选择待排数列的首部第一个元素为基准元素，设置两指针，分别指向数列首尾部位置，假设两指针分别设为i和j。
+ * 每次遍历的过程是这样的，首先遍历指针j所指向的元素，直到j指向的元素值小于基准元素时，停止遍历，将其与
+ * 指针i所指向的元素进行交换，因为当前指针所指位置就是用于插入较基准元素小的元素，然后再将指针i加一。接
+ * 着轮到指针i遍历,直到i所指向的元素值大于基准元素时，停止遍历，将其与指针j所指向的元素进行交换，之所以
+ * 可以交换，是因为指针j所指向的元素刚刚已经交换到前半部分呢，故可以直接选择覆盖就行，这样就将大于基准
+ * 元素的元素放于后半部分。依此类推，直到指针i与指针相等或者大于时，停止外部循环。最后直接将基准元素直
+ * 接放置于指针i所指向的位置即可，完成分区操作。
+ *
  */
 public class QuickSort {
     /**
