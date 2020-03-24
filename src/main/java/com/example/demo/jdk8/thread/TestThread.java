@@ -16,14 +16,26 @@ public class TestThread {
 
     public ExecutorService executorService = new ThreadPoolExecutor(20, 50, 1, TimeUnit.MINUTES,
             new LinkedBlockingQueue<Runnable>(),
-            new ThreadFactory() {
-                @Override
-                public Thread newThread(Runnable r) {
-                    Thread thread = new Thread(r);
-                    thread.setName("pull javadoc thread" + thread.getId());
-                    return thread;
-                }
-            },
+
+/**
+ * 创建ThreadFactory实例的多种方式
+ * spring的CustomizableThreadFactory
+ *
+ * guava的ThreadFactoryBuilder链式方法。这个最好用
+ *
+ * commons-lang3的BasicThreadFactory
+ */
+//            new ThreadFactory() {
+//                @Override
+//                public Thread newThread(Runnable r) {
+//                    Thread thread = new Thread(r);
+//                    thread.setName("pull javadoc thread" + thread.getId());
+//                    return thread;
+//                }
+//            },
+
+            Executors.defaultThreadFactory(),
+
             new ThreadPoolExecutor.AbortPolicy());
 
 
