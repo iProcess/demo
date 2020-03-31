@@ -1,6 +1,5 @@
 package com.example.demo.ali;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,11 +9,11 @@ import java.util.List;
 //题目1：请基于以下数节点信息构建一棵树，构建树。节点信息如下（getter和setter方法省略）
 @Data
 public class TreeNode<T> {
-    private String            myCode;
-    private String            parentCode;
-    private TreeNode<T>       parentNode;
+    private String myCode;
+    private String parentCode;
+    private TreeNode<T> parentNode;
     private List<TreeNode<T>> children;
-    private T                 data;
+    private T data;
 
 //    public TreeNode(String myCode, String parentCode, T data){
 //        this.myCode = myCode;
@@ -23,14 +22,13 @@ public class TreeNode<T> {
 //    }
 
 
+    public void buildTreeNode(TreeNode<T> node, String myCode, String parentCode, T data) {
 
-    public void buildTreeNode(TreeNode<T> node, String myCode, String parentCode, T data){
-
-        if(node == null){
+        if (node == null) {
             return;
         }
 
-        if(StringUtils.isNotEmpty(node.getParentCode())){
+        if (StringUtils.isNotEmpty(node.getParentCode())) {
 
         }
 
@@ -38,7 +36,7 @@ public class TreeNode<T> {
         node.setData(data);
         node.setParentCode(parentCode);
 
-        if(StringUtils.isNotEmpty(node.getParentCode())){
+        if (StringUtils.isNotEmpty(node.getParentCode())) {
             List<TreeNode<T>> children = new ArrayList<>();
             TreeNode child = new TreeNode();
             child.setMyCode(myCode);
@@ -48,13 +46,13 @@ public class TreeNode<T> {
             node.setChildren(children);
 
 //            return;
-        }else {
+        } else {
             node.setParentNode(node);
             return;
 //            buildTreeNode(node.getParentNode(), myCode, parentCode, data);
         }
 
-        if(node.getMyCode().equals(parentCode)){
+        if (node.getMyCode().equals(parentCode)) {
             List<TreeNode<T>> children = new ArrayList<>();
 //            TreeNode child = new TreeNode();
 //            child.setMyCode(myCode);
@@ -62,8 +60,9 @@ public class TreeNode<T> {
 //            child.setData(data);
             children.add(node);
             node.setChildren(children);
-        }else {
+        } else {
             buildTreeNode(node.getParentNode(), myCode, parentCode, data);
         }
 
     }
+}
