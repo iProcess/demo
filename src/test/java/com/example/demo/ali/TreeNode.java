@@ -67,36 +67,3 @@ public class TreeNode<T> {
         }
 
     }
-
-    public static void main(String[] args) {
-        TreeNode<String> node = new TreeNode<>();
-        node.buildTreeNode(node, "files", "root", "files_data");
-        System.out.println(JSON.toJSONString(node));
-
-        node.buildTreeNode(node, "m1", "musics", "She'll be loved");
-        System.out.println(JSON.toJSONString(node));
-
-        node.buildTreeNode(node, "root", "", "root_data");
-        System.out.println(JSON.toJSONString(node));
-
-        node.buildTreeNode(node, "musics", "root", "musics_data");
-        System.out.println(JSON.toJSONString(node));
-
-        node.buildTreeNode(node, "m2", "musics", "Hey Soul Sister");
-        System.out.println(JSON.toJSONString(node));
-    }
-
-}
-
-// 原始的节点数据如下(三个字段用逗号分隔，假设各字段均不包含逗号：节点key，父节点key，当前节点data)
-// files,root,files_data
-// m1,musics,She'll be loved
-// root,,root_data
-// musics,root,musics_data
-// m2,musics,Hey Soul Sister
-
-
-
-
-
-

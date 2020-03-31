@@ -14,9 +14,9 @@ public class LRUCache {
     private CacheNode last;//链表尾
 
     public LRUCache(int cacheSize) {
-        cacheSize = cacheSize;
-        nodes = new Hashtable(cacheSize);
-        currentSize = 0;
+        this.cacheSize = cacheSize;
+        this.nodes = new Hashtable(cacheSize);
+        this.currentSize = 0;
     }
 
     /**
