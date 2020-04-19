@@ -4,11 +4,12 @@ import com.alibaba.fastjson.JSON;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class TestHashMap {
+public class TestConCurrentHashMap {
 
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new ConcurrentHashMap<>();
         map.put("abc", "123");
         System.out.println(JSON.toJSONString(map));
         System.out.println(map.keySet());
@@ -19,9 +20,9 @@ public class TestHashMap {
         System.out.println(p);
         System.out.println(map.get("abc"));
 
-        map.put(null, "testNull");//正常
+        map.put(null, "testNull");//NullPointerException
 
-        map.put("nullKey", null);//正常
+        map.put("nullKey", null);//NullPointerException
 
         for(Map.Entry<String, String> entry : map.entrySet()){
             System.out.println(entry.getKey() + ", " + entry.getValue());
