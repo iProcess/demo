@@ -2,6 +2,9 @@ package com.example.demo.ali.stack;
 
 import java.util.Stack;
 
+/**
+ * https://blog.csdn.net/weixin_40739833/article/details/80554996
+ */
 public class TestStack {
     public static void main(String[] args) {
         Stack<Character> stack = new Stack<>();
