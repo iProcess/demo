@@ -1,0 +1,23 @@
+// 向队列中添加元素，尾添
+public boolean add(E e) {
+    // 尾添元素
+    linkLast(e);
+    return true;
+}
+
+// 队首元素出队列
+public E poll() {
+    final Node<E> f = first;
+    // 队首为空，返回null，不为空返回队首元素
+    return (f == null) ? null : unlinkFirst(f);
+}
+
+// 获取队首元素
+public E peek() {
+    final Node<E> f = first;
+    // 空队列返回null，否则返回队首元素
+    return (f == null) ? null : f.item;
+}
+————————————————
+版权声明：本文为CSDN博主「Xucc_」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_40739833/java/article/details/80554996

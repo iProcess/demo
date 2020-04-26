@@ -1,0 +1,38 @@
+1. 栈
+ 栈是一种先进后出的数据结构 浏览器的后退、编辑器的撤销、安卓Activity的返回等都属于栈的功能。
+
+ 在Java集合中提供有Stack类，这个类是集合类Vector的子类。需要注意的是，关于栈的方法并不是Vector类或者List接口给出的，而是Stack类自己定义的。
+
+ 接下来介绍栈的三个常用方法。
+
+// 入栈
+public E push(E item) {
+    // 将新元素尾添进栈
+    addElement(item);
+    // 返回添加的元素(方便操作)
+    return item;
+}
+
+// 出栈
+public synchronized E pop() {
+    E       obj;
+    // 获取当前栈的大小
+    int     len = size();
+
+    // 获取栈顶元素
+    obj = peek();
+    // 删除栈顶元素，尾删
+    removeElementAt(len - 1);
+    // 返回这个删除的元素
+    return obj;
+}
+
+// 得到栈顶元素
+public synchronized E peek() {
+    int     len = size();
+    // 如果要得到空栈的栈顶元素，抛出异常
+    if (len == 0)
+        throw new EmptyStackException();
+    // 返回栈顶元素
+    return elementAt(len - 1);
+}
