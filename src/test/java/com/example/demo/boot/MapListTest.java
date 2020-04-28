@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * 注入说明：https://blog.csdn.net/qq_32867467/article/details/82944196
+ * Map、List中的对象 自动注入
  */
 @Component
 public class MapListTest {
