@@ -169,7 +169,7 @@ public class ExcelUtil {
 
                     Cell cell3 = row.getCell(3);
                     String cellValue3 = getCellValue(cell3);
-                    config.setOpenCardUrl(StringUtils.isNotEmpty(cellValue3) ? cellValue3 : null);
+                    config.setNewOldFlag(StringUtils.isNotEmpty(cellValue3) ? Integer.valueOf(cellValue3) : null);
 
                     configList.add(config);
 //                    //cell
