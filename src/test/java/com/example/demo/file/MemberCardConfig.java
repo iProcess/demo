@@ -31,10 +31,11 @@ public class MemberCardConfig implements Serializable {
   private String nonmemberTitle;
 
   /**
-   * 开卡页面跳转链接
-   * 如："http://membercard.m.jd.com/?jdreactkey=JDReactCardPackage&rn_brandId=100000000000115&rn_channelId=401&rn_returnUrl="
+   * 新老品牌标识
+   * 1-老品牌
+   * 2-新品牌
    */
-  private String openCardUrl;
+  private Integer newOldFlag;
 
 
 }
