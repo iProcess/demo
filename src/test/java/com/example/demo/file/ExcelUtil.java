@@ -157,19 +157,19 @@ public class ExcelUtil {
                     //获取单元格数据
                     Cell cell0 = row.getCell(0);
                     String cellValue0 = getCellValue(cell0);
-                    config.setBrandsId(StringUtils.isNotEmpty(cellValue0) ? Long.valueOf(cellValue0) : null);
+                    config.setBrandsId(StringUtils.isNotBlank(cellValue0) ? Long.valueOf(StringUtils.trim(cellValue0)) : null);
 
                     Cell cell1 = row.getCell(1);
                     String cellValue1 = getCellValue(cell1);
-                    config.setMemberTitle(StringUtils.isNotEmpty(cellValue1) ? cellValue1 : null);
+                    config.setMemberTitle(StringUtils.isNotBlank(cellValue1) ? StringUtils.trim(cellValue1) : null);
 
                     Cell cell2 = row.getCell(2);
                     String cellValue2 = getCellValue(cell2);
-                    config.setNonmemberTitle(StringUtils.isNotEmpty(cellValue2) ? cellValue2 : null);
+                    config.setNonmemberTitle(StringUtils.isNotBlank(cellValue2) ? StringUtils.trim(cellValue2) : null);
 
                     Cell cell3 = row.getCell(3);
                     String cellValue3 = getCellValue(cell3);
-                    config.setNewOldFlag(StringUtils.isNotEmpty(cellValue3) ? Integer.valueOf(cellValue3) : null);
+                    config.setNewOldFlag(StringUtils.isNotBlank(cellValue3) ? Integer.valueOf(StringUtils.trim(cellValue3)) : null);
 
                     configList.add(config);
 //                    //cell
@@ -231,7 +231,7 @@ public class ExcelUtil {
 
 
     public static void main(String[] args) {
-        String fileName = "E:\\2020\\春节后\\商详配置\\商详配置1.xlsx";
+        String fileName = "E:\\2020\\春节后\\商详配置\\新增商详开卡入口品牌-汇总_2020_05_18.xlsx";
         List<MemberCardConfig> configList = ExcelUtil.readExcel(fileName);
         String json = JSON.toJSONString(configList);
         System.out.println(json.length());
