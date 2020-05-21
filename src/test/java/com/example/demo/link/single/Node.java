@@ -1,4 +1,4 @@
-package com.example.demo.link;
+package com.example.demo.link.single;
 
 import lombok.Data;
 
