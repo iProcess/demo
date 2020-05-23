@@ -1,6 +1,6 @@
 package com.example.demo.structure.stack;
 
-import com.example.demo.structure.linked.SingleLinkedList;
+import com.example.demo.structure.linked.single.SingleLinkedList;
 
 /**
  * 用单向链表实现栈

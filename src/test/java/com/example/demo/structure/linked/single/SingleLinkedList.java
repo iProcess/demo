@@ -1,4 +1,4 @@
-package com.example.demo.structure.linked;
+package com.example.demo.structure.linked.single;
 
 import com.example.demo.structure.domain.Node;
 
@@ -121,10 +121,13 @@ public class SingleLinkedList {
             }
 
             while (tempSize > 0){
+                //头结点
                 if(node.equals(head)){
                     System.out.print("[" + node.getData() + "->");
+                //尾结点
                 }else if(node.getNext() == null){
-                    System.out.print(node.getData() + "]");
+                    System.out.println(node.getData() + "]");
+                //中间结点
                 }else {
                     System.out.print(node.getData() + "->");
                 }
