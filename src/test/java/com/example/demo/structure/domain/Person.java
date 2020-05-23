@@ -1,4 +1,4 @@
-package com.example.demo.structure.linked;
+package com.example.demo.structure.domain;
 
 import lombok.Data;
 

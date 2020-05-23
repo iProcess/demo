@@ -1,5 +1,7 @@
 package com.example.demo.structure.linked;
 
+import com.example.demo.structure.domain.Node;
+
 public class SingleLinkedList {
     private int size;
     private Node head;

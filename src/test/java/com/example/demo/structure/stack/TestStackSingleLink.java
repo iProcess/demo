@@ -1,5 +1,8 @@
 package com.example.demo.structure.stack;
 
+/**
+ * https://www.cnblogs.com/ysocean/p/7928988.html#_label0?tt_from=weixin&utm_source=weixin&utm_medium=toutiao_ios&utm_campaign=client_share&wxshare_count=1
+ */
 public class TestStackSingleLink {
 
     public static void main(String[] args) {
@@ -15,4 +18,5 @@ public class TestStackSingleLink {
 
         singleLink.display();
     }
+
 }
