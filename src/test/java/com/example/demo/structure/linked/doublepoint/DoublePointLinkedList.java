@@ -1,13 +1,13 @@
-package com.example.demo.structure.linked.doubles;
+package com.example.demo.structure.linked.doublepoint;
 
-import com.example.demo.structure.domain.Node;
+import com.example.demo.structure.linked.Node;
 
-public class DoublesPointLinkedList {
+public class DoublePointLinkedList {
     private int size;
     private Node head;
     private Node tail;
 
-    public DoublesPointLinkedList(){
+    public DoublePointLinkedList(){
         this.size = 0;
         head = null;
         tail = null;

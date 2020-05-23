@@ -1,14 +1,14 @@
 package com.example.demo.structure.queue;
 
-import com.example.demo.structure.linked.doubles.DoublesPointLinkedList;
+import com.example.demo.structure.linked.doublepoint.DoublePointLinkedList;
 
 public class QueueLinkedList {
     private int size;
-    private DoublesPointLinkedList linkedList;
+    private DoublePointLinkedList linkedList;
 
     public QueueLinkedList(){
         size = 0;
-        linkedList = new DoublesPointLinkedList();
+        linkedList = new DoublePointLinkedList();
     }
 
     /**

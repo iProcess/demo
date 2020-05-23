@@ -1,9 +1,9 @@
-package com.example.demo.structure.linked.doubles;
+package com.example.demo.structure.linked.doublepoint;
 
-public class TestDoublesPointLinkedList {
+public class TestDoublePointLinkedList {
 
     public static void main(String[] args) {
-        DoublesPointLinkedList linkedList = new DoublesPointLinkedList();
+        DoublePointLinkedList linkedList = new DoublePointLinkedList();
         linkedList.addHead("A");
         linkedList.addHead("B");
         linkedList.addHead("C");

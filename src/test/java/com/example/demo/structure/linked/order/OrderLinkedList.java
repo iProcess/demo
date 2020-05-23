@@ -1,6 +1,6 @@
 package com.example.demo.structure.linked.order;
 
-import com.example.demo.structure.domain.Node;
+import com.example.demo.structure.linked.Node;
 
 public class OrderLinkedList {
 
