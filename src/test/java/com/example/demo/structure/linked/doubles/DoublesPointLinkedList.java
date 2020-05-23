@@ -41,10 +41,11 @@ public class DoublesPointLinkedList {
         return object;
     }
 
-    public boolean deleteHead(){
+    public Object deleteHead(){
         if(size == 0){
-            return false;
+            return null;
         }
+        Object object = head.getData();
         if (head.getNext() == null) {
             head = null;
             tail = null;
@@ -52,7 +53,14 @@ public class DoublesPointLinkedList {
             head = head.getNext();
         }
         size--;
-        return true;
+        return object;
+    }
+
+    public Object findHead(){
+        if(size == 0){
+            return null;
+        }
+        return head.getData();
     }
 
     public boolean isEmpty(){

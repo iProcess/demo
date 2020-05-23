@@ -15,6 +15,10 @@ public class TestDoublesPointLinkedList {
 
         linkedList.deleteHead();
         linkedList.display();
+
+        Object head = linkedList.deleteHead();
+        System.out.println(head);
+        linkedList.display();
     }
 
 }
