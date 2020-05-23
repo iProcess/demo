@@ -21,13 +21,6 @@ public class SingleLinkedList {
         return object;
     }
 
-    public Object delHead(){
-        Object object = head.getData();
-        head = head.getNext();
-        size--;
-        return object;
-    }
-
     public Object deleteHead(){
         Object object = head.getData();
         head = head.getNext();
