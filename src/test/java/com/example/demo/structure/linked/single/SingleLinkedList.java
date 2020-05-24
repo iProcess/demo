@@ -155,5 +155,8 @@ public class SingleLinkedList {
         }
     }
 
+    public Node getHead(){
+        return head;
+    }
 
 }
