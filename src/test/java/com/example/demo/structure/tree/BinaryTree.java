@@ -1,5 +1,9 @@
 package com.example.demo.structure.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * https://www.cnblogs.com/ysocean/p/8032642.html
  */
@@ -233,5 +237,44 @@ public class BinaryTree implements Tree {
         return root;
     }
 
+    @Override
+    public void depthFirstSearch(Node current) {
+        if(current == null){
+            System.out.println("[]");
+            return;
+        }
+        Stack<Node> stack = new Stack<>();
+        stack.push(current);
+        while (!stack.empty()){
+            Node node = stack.pop();
+            System.out.print(node.getData() + " ");
+            if(node.getRightChild() != null){
+                stack.push(node.getRightChild());
+            }
+            if(node.getLeftChild() != null){
+                stack.push(node.getLeftChild());
+            }
+        }
+    }
+
+    @Override
+    public void broadFirstSearch(Node current) {
+        if(current == null){
+            System.out.println("[]");
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(current);
+        while (!queue.isEmpty()){
+            Node node = queue.poll();
+            System.out.print(node.getData() + " ");
+            if(node.getLeftChild() != null){
+                queue.offer(node.getLeftChild());
+            }
+            if(node.getRightChild() != null){
+                queue.offer(node.getRightChild());
+            }
+        }
+    }
 
 }

@@ -2,6 +2,14 @@ package com.example.demo.structure.tree;
 
 public class TestBinaryTree {
 
+    /**
+     * 构建的二叉树
+     *            50
+     *       20        80
+     *    10   30   60   90
+     *       25        85  100
+     *
+     */
     public static void main(String[] args) {
         BinaryTree bt = new BinaryTree();
         bt.insert(50);
