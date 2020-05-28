@@ -33,4 +33,12 @@ public class DoItUtil {
         data[x] = data[y];
         data[y] = temp;
     }
+
+    public static void main(String[] args) {
+        int[] array = createArray();
+        swap(array, 1, 3);
+        printArray(array);
+        swap(array, 3, 1);
+        printArray(array);
+    }
 }
