@@ -230,9 +230,14 @@ public class ExcelUtil {
     }
 
 
+    /**
+     * 配置中心key： brand_open_card_entrance_config
+     * @param args
+     */
     public static void main(String[] args) {
-        String fileName = "E:\\2020\\春节后\\商详配置\\新增商详开卡入口品牌-汇总_2020_05_26.xlsx";
+        String fileName = "E:\\2020\\春节后\\商详配置\\新增商详开卡入口品牌-汇总_2020_05_29.xlsx";
         List<MemberCardConfig> configList = ExcelUtil.readExcel(fileName);
+        System.out.println(configList.size());
         String json = JSON.toJSONString(configList);
         System.out.println(json.length());
         System.out.println(json);
