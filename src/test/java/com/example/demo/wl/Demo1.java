@@ -25,20 +25,21 @@ public class Demo1 {
 
     /**
      * 第二题
-     * @param n
+     *  斐波那契数列的运用
+     * @param n n大于0
      * @return
      */
     public static int calcStairs(int n){
-        if(n == 0){
-            return 0;
-        }else if(n == 1){
+//        if(n == 0){
+//            return 0;
+//        }
+        if(n == 1){
             return 1;
-        }else if(n == 2){
-            return 2;
-        }else{
-            return calcStairs(n - 1) + calcStairs( n - 2);
         }
-
+        if(n == 2){
+            return 2;
+        }
+        return calcStairs(n - 1) + calcStairs( n - 2);
     }
 
     /**
@@ -47,7 +48,7 @@ public class Demo1 {
      */
 
     public static void main(String[] args) {
-        System.out.println(calcStairs(3));
+        System.out.println(calcStairs(4));
     }
 
 }
