@@ -2,6 +2,9 @@ package com.example.demo.structure.queue;
 
 import com.example.demo.structure.linked.doublepoint.DoublePointLinkedList;
 
+/**
+ * 基于双端链表构建队列
+ */
 public class QueueLinkedList {
     private int size;
     private DoublePointLinkedList linkedList;

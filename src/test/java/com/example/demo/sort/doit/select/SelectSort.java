@@ -2,6 +2,9 @@ package com.example.demo.sort.doit.select;
 
 import com.example.demo.sort.doit.DoItUtil;
 
+/**
+ * 3、选择排序
+ */
 public class SelectSort {
 
     public void selectSort(int[] array){

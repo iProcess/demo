@@ -2,6 +2,9 @@ package com.example.demo.sort.doit.bubble;
 
 import com.example.demo.sort.doit.DoItUtil;
 
+/**
+ * 1、冒泡排序
+ */
 public class BubbleSort {
 
     /**

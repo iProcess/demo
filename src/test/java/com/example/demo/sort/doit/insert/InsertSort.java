@@ -2,6 +2,9 @@ package com.example.demo.sort.doit.insert;
 
 import com.example.demo.sort.doit.DoItUtil;
 
+/**
+ * 2、插入排序
+ */
 public class InsertSort {
 
     public void insertSort(int[] array){

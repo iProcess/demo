@@ -2,6 +2,9 @@ package com.example.demo.sort.doit.quick;
 
 import com.example.demo.sort.doit.DoItUtil;
 
+/**
+ * 3、快速排序
+ */
 public class QuickSort {
 
     public void quickSort(int[] array, int start, int end){
