@@ -159,4 +159,8 @@ public class SingleLinkedList {
         return head;
     }
 
+    public int getSize(){
+        return size;
+    }
+
 }
