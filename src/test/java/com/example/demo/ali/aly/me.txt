@@ -1,0 +1,180 @@
+问答1、 下面的代码在绝大部分时间内都运行得很正常，请问在什么情况下会出现问题？问题的根源在哪里？
+（必答-25%）
+   import java.util.LinkedList;
+
+  public class Stack {
+
+    LinkedList list = new LinkedList();
+
+
+    public synchronized void push(Object x) {
+      synchronized(list) {
+        list.addLast( x );
+        notify();
+      }
+    }
+
+    public synchronized Object pop()
+      throws Exception {
+      synchronized(list) {
+        if( list.size() <= 0 ) {
+          wait();
+        }
+        return list.removeLast();
+      }
+    }
+  }
+答题：
+synchronized是独占锁，这里push和pop使用的是同一把锁，同时进行push和pop的时候，会出现锁竞争，互相等待对方
+释放锁，出现死锁。
+
+list.removeLast()是线程不安全的，
+
+LinkedList没有大小限制，如push的线程一直获取到cpu资源，则会一直添加数据到LinkedList，内存暴了
+
+
+
+编程题：Java编写
+• 算法题（二选一）（必答，25%）
+1、走阶梯，有n级阶梯，一次可以走一级、两级或者三级，请编写一个函数计算走完该阶梯一共有多少种种方法。
+public int calcStairs(int n){
+ if(n == 0){
+ 	return 0;
+ }
+ if(n == 1){
+ 	return 1;
+ }
+ if(n == 2){
+ 	return 2;
+ }
+ return calcStairs(n - 1) + calcStairs(n - 2);
+}
+
+
+
+2、标号1-n的n个人首尾相接，1到3报数，报到3的退出，求最后一个人的标号
+• Java语言基础（五选二）（必答，50%）
+1、编写代码，使用3个线程，1个线程打印X，一个线程打印Y，一个线程打印Z，同时执行连续打印10次"XYZ"
+2、写一个单例实现，希望实现至少3种，写出每种方案的优劣势
+public class Singleton1{
+ private static Singleton instance;
+ private Singleton(){
+ }
+ public static Singleton getInstance(){
+ 	if(instance == null){
+    	instance = new Singleton();
+    }
+    return instance;
+ }
+}
+优点：效率高
+缺点：线程不安全
+
+public class Singleton2{
+ private static Singleton instance;
+ private Singleton(){
+ }
+ public static synchronized Singleton getInstance(){
+ 	if(instance == null){
+    	instance = new Singleton();
+    }
+    return instance;
+ }
+}
+优点：线程安全
+缺点：效率不高
+
+public class Singleton3{
+ private static Singleton instance = new Singleton();
+ private Singleton(){
+ }
+ public static Singleton getInstance(){
+    return instance;
+ }
+}
+优点：线程安全，效率高
+缺点：在类装载时初始化，一直常驻内存，占用内存
+
+
+3、通过阻塞队列实现写一个生产者-消费者队列
+
+public class Producer extends Thread{
+ private Lock lock;
+ private Condition produce;
+ private Condition consume;
+ private SynchronQueue queue;
+
+ public Producer(Lock lock, Condition produce, Condition consume, SynchronQueue queue){
+ 	this.lock = lock;
+    this.produce = produce;
+    this.consume = consume;
+    this.queue = queue;
+ }
+
+ public void run(){
+ 	produce();
+ }
+
+ private void produce(){
+ 	lock.lock();
+
+ 	try{
+      while(queue.size > 0){
+          consume.signal();
+          produce.await();
+      }
+      quue.offer(1);//插入一个
+    }finally{
+    	lock.unlock();
+    }
+
+ }
+
+
+}
+
+public class Consumer extends Thread{
+
+	public Producer(Lock lock, Condition produce, Condition consume, SynchronQueue queue){
+ 	this.lock = lock;
+    this.produce = produce;
+    this.consume = consume;
+    this.queue = queue;
+ }
+
+ public void run(){
+ 	consume();
+ }
+
+ private void consume(){
+ 	lock.lock();
+
+ 	try{
+      while(queue.size == 0){
+          produce.signal();
+          consume.await();
+      }
+      quue.poll(1);//移走一个
+    }finally{
+    	lock.unlock();
+    }
+
+ }
+
+}
+
+
+4、通过JDK自带工具实现一个间隔并发执行的定时任务
+5、找到一个无序数组中找两个特定数，使其相加等于特定数字，请写代码java将它找出来，并指出时间复杂度。例如 【10,25,19,89,75,56,34,54,16，9，-5】找到相加等于28的【19，9 】
+• 附加题：（+10分）
+1、单机，有限内存 ，大本地硬盘，多CPU的一台机器上存有一个乱序的长整型数字大文件，通过程序对其排序，写出解决思路和代码，以及如果用java实现如何提高并发处理能力
+答题：
+1、将大文件进行拆分成小文件，例如：1024个文件，具体多少个文件，可以通过计算文件大小和机器内存大小，进行拆分，并对文件名进行0--1023编码；
+2、拆分文件时，对读入的整型数据进行处理，比如：0--100放入第0个文件，101--200放入第1个文件，依次类推；
+3、对每个文件内的数据进行排序，如冒泡、插入、选择、快速排序 都可以。
+4、0-1023个文件排好序后，整体就是有序的。
+提高并发：0-1023个文件可以同时进行排序，互不影响。
+
+
+
+https://www.cnblogs.com/gaopengpy/p/12913519.html
