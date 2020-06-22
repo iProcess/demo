@@ -45,7 +45,7 @@ public class NumberOff {
 
     public static void main(String[] args) {
         //System.out.println(numberOff(13));
-        System.out.println(numberOff(2));
+        System.out.println(numberOff(4));
     }
 
 
