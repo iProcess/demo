@@ -235,7 +235,7 @@ public class ExcelUtil {
      * @param args
      */
     public static void main(String[] args) {
-        String fileName = "/Users/shijincheng/Documents/sx/新增商详开卡入口品牌-汇总_2020_06_18.xlsx";
+        String fileName = "/Users/shijincheng/Documents/sx/新增商详开卡入口品牌-汇总_2020_06_29.xlsx";
         List<MemberCardConfig> configList = ExcelUtil.readExcel(fileName);
         System.out.println(configList.size());
         String json = JSON.toJSONString(configList);
