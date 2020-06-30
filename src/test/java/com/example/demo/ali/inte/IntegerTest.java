@@ -1,4 +1,4 @@
-package com.example.demo.inte;
+package com.example.demo.ali.inte;
 
 /**
  * 阿里巴巴编码规范：
