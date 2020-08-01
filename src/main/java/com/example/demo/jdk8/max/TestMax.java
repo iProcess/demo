@@ -61,6 +61,21 @@ public class TestMax {
         /**
          * Exception in thread "main" java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.
          * 参照：https://www.cnblogs.com/LeoBoy/p/5897754.html
+         *
+         *
+         * java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result异常的解决方法
+         * 场景描述#
+         * 今天在写一个JAVA程序的时候出现了异常：java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result。
+         * 发现报错的语句是：
+         *
+         * foo.divide(bar));
+         *
+         *
+         * 解决方法#
+         * 原来JAVA中如果用BigDecimal做除法的时候一定要在divide方法中传递第二个参数，定义精确到小数点后几位，否则在不整除的情况下，结果是无限循环小数时，就会抛出以上异常。
+         *
+         * foo.divide(bar, 2, BigDecimal.ROUND_HALF_UP);
+         *
          */
         //BigDecimal decimal = info3.getDiscount().divide(info3.getCondition()).setScale(4, BigDecimal.ROUND_HALF_UP);
         //System.out.println(JSON.toJSONString(decimal));
