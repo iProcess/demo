@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 /**
  * @title: MemberCardConfig
- * @projectName pop-crm
  * @description: 黄金流程 领卡入口信息
  * @date 2020/05/08
  */

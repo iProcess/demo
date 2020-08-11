@@ -6,7 +6,6 @@ import com.example.demo.structure.linked.single.SingleLinkedList;
 
 /**
  * 反转链表
- * https://www.toutiao.com/i6843607815508984331/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1593477623&app=news_article&utm_source=weixin&utm_medium=toutiao_ios&use_new_style=1&req_id=202006300840230101300371303C2F2071&group_id=6843607815508984331
  */
 public class LinkedReversal {
 

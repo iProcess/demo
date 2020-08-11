@@ -93,7 +93,7 @@ public class ExcelUtil {
 //                wb.write(os);
 //            }
 //
-//            boolean isOk = crmShopJssHandle.upload(new File(fileName), fileName, crmShopJssHandle.SENDBUCKET);
+//            boolean isOk = ShopJssHandle.upload(new File(fileName), fileName, ShopJssHandle.SENDBUCKET);
 //            if (isOk) {
 //                log.info("ExcelUtil -> writeErrorSkusToExcel write skus to excel successfully!");
 //                return true;

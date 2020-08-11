@@ -10,7 +10,7 @@ public class TestSplit {
 
     public static void main(String[] args) {
 
-        String key = "crm_level_coupon_query_coupons".concat("12345").concat("1");
+        String key = "level_coupon_query_coupons".concat("12345").concat("1");
         System.out.println(key);
 
     }

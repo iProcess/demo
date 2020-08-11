@@ -10,10 +10,10 @@ public class DemoUmpApp {
 
     public static void main(String[] args) {
 
-        String restfulURL = "http://open.ump.jd.com/queryMonitorData";
+        String restfulURL = "";
         UmpApp app = new UmpApp();
         app.setMonitorType("AppAllKeyAvgRate");
-        app.setAppName("crm.o2ogateway.downstream");
+        app.setAppName("o2ogateway.downstream");
         app.setType("3");
         app.setPageSize("1000");
         app.setPageNum("1");

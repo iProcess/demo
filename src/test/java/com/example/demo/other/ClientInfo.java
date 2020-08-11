@@ -73,7 +73,6 @@ public final class ClientInfo implements Serializable {
     private Map<String, String> heads = new HashMap<String, String>();
 
     /**
-     * 调用源IP的端口号.具体取得方式请查看: http://cf.jd.com/pages/viewpage.action?pageId=72732442#id-负载均衡服务FAQ-13
      */
     private String sourceIpPort;
     /**

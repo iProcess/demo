@@ -12,8 +12,6 @@ import java.util.Map;
 @Slf4j
 public class FansBoardAction {
 
-    //private static final String FANS_COLUMN="pop.crm.shop.java.fansboardaction.fanscolumn";
-    //private static final String DATA_DETAILS="pop.crm.shop.java.fansboardaction.skufanactivitydatadetails";
 
     private static final String FANS_COLUMN="商品id,商品名称,订单量,GMV,销量,以粉丝价下单订单量,以粉丝价下单GMV,以粉丝价下单销量";
     private static final String DATA_DETAILS="SKU粉丝活动数据明细";

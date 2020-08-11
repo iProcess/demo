@@ -7,7 +7,7 @@ public class TestMain {
     public static void main(String[] args) {
 
         JmqConfig config = new JmqConfig();
-        String sinkTopic = "pop_crm_calc_level";
+        String sinkTopic = "calc_level";
 
 //        MessageCreator<CustomerRecord> creator = new MessageCreator<CustomerRecord>() {
 //            @Override

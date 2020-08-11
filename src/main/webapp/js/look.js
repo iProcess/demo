@@ -4,8 +4,7 @@ $(document).click(function () {
 	console.info("开始请求...")
 	$.ajax( {
 		type : "POST",
-		url : "http://crmsam.jd.com/levelCoupon/getCouponInfo",
-		// url : "http://crmsam.jd.com/memberPrice/customize",
+		url : "",
 		dataType : "json",
 		data : {"pin": "{“1\",\"2\",\"3\",\"4\",\"5\",\"6”}"},
 		success : function(data) {
