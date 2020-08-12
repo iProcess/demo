@@ -19,7 +19,7 @@ public class MessageHeader implements Cloneable {
     public MessageHeader() {
 //        this.protocolType = Constants.DEFAULT_PROTOCOL_TYPE.value();
 //        this.codecType = Constants.DEFAULT_CODEC_TYPE.value();
-        this.compressType = Constants.CompressType.NONE.value();
+//        this.compressType = Constants.CompressType.NONE.value();
         this.keysMap = new ConcurrentHashMap();
     }
 
