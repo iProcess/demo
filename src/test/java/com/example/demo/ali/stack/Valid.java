@@ -14,6 +14,9 @@ public class Valid {
             if (t == '(' || t == '[' || t == '{') { //左括号入栈
                 stack.push(t);
             } else {
+                if(stack.empty()){
+                    return false;
+                }
                 char t1 = stack.pop();
                 if (t1 == '(' && t == ')'){
                     continue;
@@ -26,9 +29,10 @@ public class Valid {
                 }
             }
         }
-        if (stack.isEmpty())
+        if (stack.isEmpty()) {
             return true;
-        else
+        }else {
             return false;
+        }
     }
 }
