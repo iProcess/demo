@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.BoyRepository;
+//import com.example.demo.dao.BoyRepository;
+import com.example.demo.asp.Retry;
 import com.example.demo.domain.Boy;
+import com.example.demo.service.BoyService;
+import org.apache.commons.lang3.EnumUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +24,17 @@ public class BoyController {
 
     private static Logger logger = LoggerFactory.getLogger(BoyController.class);
 
+//    @Autowired
+//    private BoyRepository boyRepository;
     @Autowired
-    private BoyRepository boyRepository;
+    private BoyService boyService;
 
     @GetMapping("/findAll")
     public List<Boy> findAll(){
         System.out.println("findAll");
         logger.info("BoyController-->findAll");
-        return boyRepository.findAll();
+//        return boyRepository.findAll();
+        return null;
     }
 
     @GetMapping("/addBoy")
@@ -37,20 +43,23 @@ public class BoyController {
         Boy boy = new Boy();
         boy.setName(name);
         boy.setSex(sex);
-        return boyRepository.save(boy);
+//        return boyRepository.save(boy);
+        return null;
     }
 
     @GetMapping("/findById/{id}")
     public Optional<Boy> findById(@PathVariable("id") Integer id){
         System.out.println("findById");
-        return boyRepository.findById(id);
+//        return boyRepository.findById(id);
+        return null;
     }
 
     @GetMapping("/delBoy")
     public Boolean delBoy(Integer id){
         System.out.println("delBoy");
-        boyRepository.deleteById(id);
-        return true;
+//        boyRepository.deleteById(id);
+//        return true;
+        return null;
     }
 
     @GetMapping("/updateBoy")
@@ -60,13 +69,15 @@ public class BoyController {
         boy.setId(id);
         boy.setName(name);
         boy.setSex(sex);
-        return boyRepository.save(boy);
+//        return boyRepository.save(boy);
+        return null;
     }
 
     @GetMapping("/findBySex")
     public List<Boy> findBySex(String sex){
         System.out.println("findBySex");
-        return boyRepository.findBySex(sex);
+//        return boyRepository.findBySex(sex);
+        return null;
     }
 
     @GetMapping("/batchAddBoy")
@@ -82,12 +93,19 @@ public class BoyController {
                 boy.setSex("女");
             }
             boy.setCreateDate(new Date());
-            boyRepository.save(boy);
+//            boyRepository.save(boy);
         }
         Boy boy = new Boy();
         boy.setName("测试");
         boy.setSex("男");
-        boyRepository.save(boy);
+//        boyRepository.save(boy);
         return true;
     }
+
+    @GetMapping("/sayHi")
+    public String sayHi(){
+        System.out.println("sayHi");
+        return boyService.sayHi("sayHi");
+    }
+
 }

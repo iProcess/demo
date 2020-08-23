@@ -3,18 +3,18 @@ package com.example.demo.domain;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "_boy")
+//@Entity
+//@Table(name = "_boy")
 public class Boy {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 100, nullable = false)
+//    @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 2, nullable = false)
+//    @Column(length = 2, nullable = false)
     private String sex;
 
     private Date createDate;
