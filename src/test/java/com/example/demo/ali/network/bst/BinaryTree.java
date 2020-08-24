@@ -152,6 +152,8 @@ public class BinaryTree {
 
         tree.infixOrder(tree.root);
 
+        System.out.println();
+
         int min = tree.kthSmallest(tree.root, 3);
         System.out.println(min);
 
