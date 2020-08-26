@@ -1,19 +1,22 @@
 package com.example.demo.ali.network.bst;
 
 
-class TreeNode {
-
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) {
-        val = x;
-    }
-
-}
-
-
+/***
+ * 二叉树数据结构
+ */
 public class BinaryTree {
+
+    /**
+     * 二叉树节点
+     */
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 
     private int size;
     private TreeNode root;
@@ -110,6 +113,18 @@ public class BinaryTree {
 
     }
 
+    /**
+     * 查找返回类型
+     */
+    class ResultType {
+        boolean found;  // 是否找到
+        int val;  // 节点数目
+        ResultType(boolean found, int val) {
+            this.found = found;
+            this.val = val;
+        }
+    }
+
     public int kthSmallest(TreeNode root, int k) {
         return kthSmallestHelper(root, k).val;
     }
@@ -163,14 +178,4 @@ public class BinaryTree {
 }
 
 
-class ResultType {
 
-    boolean found;  // 是否找到
-    int val;  // 节点数目
-
-    ResultType(boolean found, int val) {
-        this.found = found;
-        this.val = val;
-    }
-
-}
