@@ -31,9 +31,9 @@ public class TestCycle {
         //hasCycle2-1:true
         System.out.println("hasCycle2-1:" + CycleUtil.hasCycle2(nodeA));
         //hasCycle3:3
-        System.out.println("hasCycle3:" + CycleUtil.exitCircle(nodeA));
+        System.out.println("hasCycle3:" + CycleUtil.getCircleLength(nodeA));
         //hasCycle4:A
-        System.out.println("hasCycle4:" + CycleUtil.findLoopPort(nodeA).getData());
+        System.out.println("hasCycle4:" + CycleUtil.getCircleEntry(nodeA).getData());
 
     }
 }
