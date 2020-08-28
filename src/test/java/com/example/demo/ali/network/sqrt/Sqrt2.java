@@ -4,7 +4,7 @@ public class Sqrt2 {
 
     private final static double EPSINON = 0.0000000001;
 
-    double sqrt2(){
+    public double sqrt2(){
         double low = 1.4;
         double high = 1.5;
         double mid = (low + high) / 2;
