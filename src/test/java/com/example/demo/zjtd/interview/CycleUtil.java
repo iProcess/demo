@@ -1,4 +1,4 @@
-package com.example.demo.zjtd;
+package com.example.demo.zjtd.interview;
 
 import com.example.demo.structure.linked.Node;
 
