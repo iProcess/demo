@@ -1,4 +1,4 @@
-package com.example.demo.zjtd.network;
+package com.example.demo.zjtd.network.profit;
 
 public class ProfitUtil {
 
