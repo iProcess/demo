@@ -1,4 +1,4 @@
-package com.example.demo.lru;
+package com.example.demo.lru.lru1;
 
 public class TestLRUCache {
 
