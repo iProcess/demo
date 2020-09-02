@@ -1,0 +1,39 @@
+第一题：
+LeetCode OJ 之 Find Minimum in Rotated Sorted Array （查找旋转有序数组中的最小值）
+
+思翊 2014-12-14 10:49:18  989  收藏
+分类专栏： Leetcode OJ
+版权
+题目：
+Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+
+Find the minimum element.
+
+You may assume no duplicate exists in the array.
+
+假设一个有序数组在数组中某个未知的点处被旋转了，找出旋转后数组中最小的元素。（假设数组中没有重复的数）。
+思路：
+二分查找，旋转后相当于两段有序数组，先求中间的值，如果比最后的大，说明最小的值还在后一段数组中，比如4 5 6 7 0 1 2中的7 > 2，则最小值0位于后半段，则对后半段继续使用二分查找。
+
+如果中间值比最后的小，说明最小值在前半段，比如 5 6 0 1 2 3 4，中间值 1 < 4 ,则 最小值 0 位于前半段。然后对前半段使用二分查找，直到前后下标相同，即找到最小值。
+
+注意如果整个数组有序，即并未旋转，则上述二分查找依然有效。
+
+
+第二题
+有序数组翻转后的查找
+
+QueenieK 2018-05-25 15:32:30  1802  收藏
+分类专栏： 算法 LeetCode
+题目：
+Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+
+You are given a target value to search. If found in the array return its index, otherwise return -1.
+
+You may assume no duplicate exists in the array.
+
+假设一个有序数组在某点被翻转了，现在给你一个目标值去查找，如果找到，返回它的下标，否则返回-1.。假设没有重复的数。
