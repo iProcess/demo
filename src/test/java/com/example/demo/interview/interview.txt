@@ -1,0 +1,252 @@
+//评测题目: 无
+
+/*
+ 问题：写一段java多线程代码，完成如下逻辑，同时启动3个线程从1开始打印递增数字，每次每个线程打印3次，打印到36程序结束，输出如下：
+
+线程1：1
+线程1：2
+线程1：3
+
+线程2：4
+线程2：5
+线程2：6
+
+线程3：7
+线程3：8
+线程3：9
+
+线程1：10
+线程1：11
+线程1：12
+
+......
+
+线程3：34
+线程3：35
+线程3：36
+*/
+
+package com.example.demo.interview;
+
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class ThreadPrinter {
+    //计数器，计数到36程序结束
+    public int counter = 1;
+    //线程执行顺序
+    private int order = 1;
+    //线程锁
+    final Lock lock = new ReentrantLock();
+    final Condition c1 = lock.newCondition();
+    final Condition c2 = lock.newCondition();
+    final Condition c3 = lock.newCondition();
+
+    public void print(int seq) {
+        lock.lock();
+        try {
+            //控制线程执行，没有轮到自己执行时，进入await
+            while (order != seq) {
+                if (seq == 1) {
+                    try {
+                        c1.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else if (seq == 2) {
+                    try {
+                        c2.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        c3.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            //计数器小于36，继续执行计数，每个线程执行三次
+            if (counter <= 36) {
+                for (int i = 0; i < 3; i++) {
+                    System.out.println(Thread.currentThread().getName() + ":" + counter++);
+                }
+                System.out.println();
+            }
+            //控制线程执行顺序
+            if (seq == 1) {
+                order = 2;
+                c2.signal();
+            } else if (seq == 2) {
+                order = 3;
+                c3.signal();
+            } else {
+                order = 1;
+                c1.signal();
+            }
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        ThreadPrinter printer = new ThreadPrinter();
+        new Thread(() -> {
+            while (printer.counter <= 36) {
+                printer.print(1);
+            }
+        }, "线程1").start();
+
+        new Thread(() -> {
+            while (printer.counter <= 36) {
+                printer.print(2);
+            }
+        }, "线程2").start();
+
+        new Thread(() -> {
+            while (printer.counter <= 36) {
+                printer.print(3);
+            }
+        }, "线程3").start();
+    }
+
+}
+
+
+
+/*
+ 问题：写一个单例或者单例工厂，要求：①懒加载（即getInstance()时才实例化），②高效（不可在getInstance()方法前面加synchronized修饰符，③必须单例（别笑，只能创建一个实例，不能因为启动后并发请求getInstance()而导致实际new了多个实例）。并最好对所涉及的Java原理加以注释解释。
+*/
+package com.example.demo.interview;
+
+public class Singleton {
+
+    //volatile关键字，保证volatile变量的内存可见性，并阻止CPU指令重排
+    private static volatile Singleton singleton = null;
+
+    //私有化构造方法，确保不会在其他地方产生新的对象
+    private Singleton() {
+    }
+
+    //提供唯一方法获取唯一实例
+    public static Singleton getInstance() {
+        //如果为null则创建实例，否则直接返回，为了在多线程下提高效率，这里不加锁，否则每次只有一个线程可访问获取实例
+        if (singleton == null) {
+            //可以保证同一时间只会有一个线程进入实例化对象，保证实例的唯一性，并且在第一次实例化完成后，之后的线程在此调用该方法的时候会在前面的if处过滤掉，不会进入锁中，提高效率
+            synchronized (Singleton.class) {
+                //如果在实例还未被创建时候，有多个线程同时进入第一层if，在此处进行二次判断，可避免多次创建实例
+                if (singleton == null) {
+                    singleton = new Singleton();
+                }
+            }
+        }
+        return singleton;
+    }
+
+    public static void main(String[] args) {
+        new Thread(() -> {
+            System.out.println(Singleton.getInstance());
+        }, "线程1").start();
+
+        new Thread(() -> {
+            System.out.println(Singleton.getInstance());
+        }, "线程2").start();
+
+        new Thread(() -> {
+            System.out.println(Singleton.getInstance());
+        }, "线程3").start();
+    }
+
+}
+
+
+/*
+ 问题：请使用java实现：请使用模版模式设计如下功能
+ *	a.烹饪接口提供食物制作服务
+ *	b.烘培服务模版类为该接口的实现，实现食物制作服务的流程编排，流程如下：材料准备 -> 烘烤，其中烘烤为通用能力。
+ *	c.烘培饼干服务类、烘培蛋糕服务类使用烘培服务模版，实现具体化的材料准备。
+ * 请设计如下类：CookService(Interface)、BakeServiceTemplate(Class)、BakeCookieServiceImpl(Class)、BakeCakeServiceImpl(Class)
+ * ---------------------------------------------------------------------------------------------------------
+ */
+
+ // to do
+
+package com.example.demo.interview;
+
+
+/**
+ * 烹饪接口提供食物制作服务
+ */
+interface CookService{
+    /**
+     * 食物制作
+     */
+    public void cook();
+}
+
+/**
+ * 烘培服务模版类为烹饪接口的实现，
+ * 实现食物制作服务的流程编排，
+ * 流程如下：材料准备 -> 烘烤，其中烘烤为通用能力。
+ */
+abstract class BakeServiceTemplate implements CookService{
+
+    /**
+     * 准备材料
+     */
+    protected abstract void ready();
+
+    /**
+     * 烘烤
+     */
+    public void bake(){
+        System.out.println("开始烘烤");
+    }
+
+    @Override
+    public void cook() {
+        //1、准备材料
+        ready();
+        //2、烘烤
+        bake();
+    }
+}
+
+/**
+ * 烘培饼干服务类使用烘培服务模版，实现具体化的材料准备。
+ */
+class BakeCookieServiceImpl extends BakeServiceTemplate{
+
+    @Override
+    protected void ready() {
+        System.out.println("准备烘培饼干材料");
+    }
+}
+
+/**
+ * 烘培蛋糕服务类使用烘培服务模版，实现具体化的材料准备。
+ */
+class BakeCakeServiceImpl extends BakeServiceTemplate{
+
+    @Override
+    protected void ready() {
+        System.out.println("准备烘培蛋糕材料");
+    }
+}
+
+public class Cook {
+    public static void main(String[] args) {
+        //烘培饼干
+        BakeCookieServiceImpl bakeCookieService = new BakeCookieServiceImpl();
+        bakeCookieService.cook();
+        //烘培蛋糕
+        BakeCakeServiceImpl bakeCakeService = new BakeCakeServiceImpl();
+        bakeCakeService.cook();
+    }
+}
+
+
+
