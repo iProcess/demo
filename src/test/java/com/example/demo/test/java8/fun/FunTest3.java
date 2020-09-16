@@ -1,16 +1,15 @@
 package com.example.demo.test.java8.fun;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -92,6 +91,41 @@ public class FunTest3 {
         param.put("multiBuId", isMultiBuId(qcrQueryVO) ? 2 : 1);
         return param;
     }
+
+    private List<QualityIndexDeptVO> combineDept1(List<QualityIndexDeptVO> currDeptList, List<QualityIndexDeptVO> contrastDeptList){
+        //当前部门以deptId分组
+        Map<String, QualityIndexDeptVO> currDeptMap = currDeptList.stream()
+                .collect(Collectors.toMap(QualityIndexDeptVO::getDeptId,Function.identity(),(k1, k2) -> k2, ConcurrentHashMap::new));
+        //前一日部门以deptId分组
+        Map<String, QualityIndexDeptVO> contrastDeptMap = contrastDeptList.stream()
+                .collect(Collectors.toMap(QualityIndexDeptVO::getDeptId,Function.identity(),(k1, k2) -> k2, ConcurrentHashMap::new));
+        //计算环比
+        currDeptMap.keySet().forEach(key -> {
+            QualityIndexUtils.setMomCount(currDeptMap.get(key), contrastDeptMap.getOrDefault(key, new QualityIndexDeptVO()));
+        });
+        return currDeptList;
+    }
+
+    private Map<String, QualityIndexDeptVO> encase(List<QualityIndexDeptVO> depts){
+        return depts.stream().collect(Collectors.toMap(QualityIndexDeptVO::getDeptId,Function.identity(),(k1, k2) -> k2, ConcurrentHashMap::new));
+    }
+
+    private Map<String, QualityIndexDeptVO> encaseMap(List<QualityIndexDeptVO> depts, Function<List<QualityIndexDeptVO>, Map<String, QualityIndexDeptVO>> mapper){
+        return mapper.apply(depts);
+    }
+
+    private List<QualityIndexDeptVO> encase1(List<QualityIndexDeptVO> currDept, List<QualityIndexDeptVO> contrastDept, BiFunction<List<QualityIndexDeptVO>, List<QualityIndexDeptVO>, List<QualityIndexDeptVO>> mapper){
+        return mapper.apply(currDept, contrastDept);
+    }
+
+    private <T, U, R> R encase2(T currDept, U contrastDept, BiFunction<T, U, R> mapper){
+        return mapper.apply(currDept, contrastDept);
+    }
+
+    private List<QualityIndexDeptVO> ddd(List<QualityIndexDeptVO> currDeptList, List<QualityIndexDeptVO> contrastDeptList){
+        return encase2(currDeptList, contrastDeptList, (currDept, contrastDept) -> combineDept1(currDept, contrastDept));
+    }
+
 
     private List<QualityIndexDeptVO> combineDept(List<QualityIndexDeptVO> currDeptList, List<QualityIndexDeptVO> contrastDeptList){
         //当前部门以deptId分组
