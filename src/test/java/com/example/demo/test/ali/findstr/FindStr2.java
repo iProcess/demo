@@ -10,21 +10,24 @@ import java.util.Map;
 public class FindStr2 {
 
     public static void main(String[] args) {
-        //int array[] = {1, 2, 3, 2, 5, 2, 2, 6, 2, 2, 2};
-        //int array[] = {1, 2, 3, 2, 5, 2, 6, 2, 3, 2, 4}; //-1
-        //int array[] = {1, 1, 2, 2}; //-1
+        //int array1[] = {1, 2, 3, 2, 5, 2, 2, 6, 2, 2, 2};
+        //int array1[] = {1, 2, 3, 2, 5, 2, 6, 2, 3, 2, 4}; //-1
+        //int array1[] = {1, 1, 2, 2}; //-1
 
 
-        //String array[] = {"4", "3", "4", "2", "4", "4", "2", "4"};
-        String array[] = {"3", "3", "4", "2", "4", "4", "2", "4"};
+        String array[] = {"4", "3", "4", "2", "4", "4", "2", "4"};
+        int array1[] = {4, 3, 4, 2, 4, 4, 2, 4};
 
-        //int array1[] = {3, 3, 4, 2, 4, 4, 2, 4};//-1
+        //String array[] = {"3", "3", "4", "2", "4", "4", "2", "4"};
+        //int array1[] = {3, 3, 4, 2, 4, 4, 2, 4};
 
         System.out.println(findAppearMoreThanHalf2(array));
 
         System.out.println(findAppearMoreThanHalf3(array));
 
         //System.out.println(moreThanHalfNum(array1));
+
+        System.out.println(moreThanHalfNum(array1));
     }
 
     public static String findAppearMoreThanHalf2(String[] array) {
@@ -83,7 +86,7 @@ public class FindStr2 {
             }
         }
         boolean isMoreThanHalf = true;
-        if(times * 2 <= length){
+        if(times * 2 < length){
             //arrayInvalid = true;
             isMoreThanHalf = false;
         }
