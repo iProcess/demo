@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -93,7 +94,6 @@ public class FunTest3 {
     }
 
     private List<QualityIndexDeptVO> combineDept(List<QualityIndexDeptVO> currDeptList, List<QualityIndexDeptVO> contrastDeptList){
-        log.info("QualityIndexDeptServiceImpl->combineDept, currDeptList:{}, contrastDeptList:{}", JSON.toJSONString(currDeptList), JSON.toJSONString(contrastDeptList));
         //当前部门以deptId分组
         Map<String, QualityIndexDeptVO> currDeptMap = currDeptList.stream()
                 .collect(Collectors.toMap(QualityIndexDeptVO::getDeptId,Function.identity(),(k1, k2) -> k2, ConcurrentHashMap::new));
@@ -104,11 +104,10 @@ public class FunTest3 {
         currDeptMap.keySet().forEach(key -> {
             QualityIndexUtils.setMomCount(currDeptMap.get(key), contrastDeptMap.getOrDefault(key, new QualityIndexDeptVO()));
         });
-        log.info("QualityIndexDeptServiceImpl->combineDept, currDeptList:{}", JSON.toJSONString(currDeptList));
         return currDeptList;
     }
 
-    public <T, R> R display(Function<T, R> mapper, T ){
+    public <T, R> R display(Function<T, R> mapper, T currDeptList, R contrastDeptList){
         QcrQueryVO qcrQueryVO = new QcrQueryVO();
         qcrQueryVO.setBuId(buId);
         return function.apply(qcrQueryVO);
