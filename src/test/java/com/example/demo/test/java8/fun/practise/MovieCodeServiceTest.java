@@ -6,6 +6,9 @@ package com.example.demo.test.java8.fun.practise;
  * https://www.jianshu.com/p/0746aaf5f955
  * https://blog.csdn.net/huo065000/article/details/78964382
  * https://www.jianshu.com/p/8dc46a2dc21d
+ *
+ * 适用于同一类型参数，且返回同一类型结果的多个方法，通过Function或BiFunction进行合并
+ *
  */
 public class MovieCodeServiceTest {
 
