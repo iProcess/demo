@@ -1,4 +1,4 @@
-package com.example.demo.test.java8.fun;
+package com.example.demo.test.java8.fun.demo;
 
 import cn.hutool.core.bean.BeanUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -141,11 +141,11 @@ public class FunTest3 {
         return currDeptList;
     }
 
-    public <T, R> R display(Function<T, R> mapper, T currDeptList, R contrastDeptList){
-        QcrQueryVO qcrQueryVO = new QcrQueryVO();
-        qcrQueryVO.setBuId(buId);
-        return function.apply(qcrQueryVO);
-    }
+//    public <T, R> R display(Function<T, R> mapper, T currDeptList, R contrastDeptList){
+//        QcrQueryVO qcrQueryVO = new QcrQueryVO();
+//        qcrQueryVO.setBuId(buId);
+//        return function.apply(qcrQueryVO);
+//    }
 
     public Map<String, Object> encaseName(QcrQueryVO qcrQueryVO){
         Map<String, Object> map = new HashMap<>();
@@ -153,14 +153,14 @@ public class FunTest3 {
         return map;
     }
 
-    public void handle(){
-        System.out.println(display("1001", (qcrQueryVO) -> encaseName(qcrQueryVO)));
-    }
+//    public void handle(){
+//        System.out.println(display("1001", (qcrQueryVO) -> encaseName(qcrQueryVO)));
+//    }
 
 
     public static void main(String[] args) {
-        FunTest3 test = new FunTest3();
-        test.handle();
+//        FunTest3 test = new FunTest3();
+//        test.handle();
     }
 
 }

@@ -1,11 +1,10 @@
-package com.example.demo.test.java8.fun;
+package com.example.demo.test.java8.fun.demo;
 
 import cn.hutool.core.bean.BeanUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

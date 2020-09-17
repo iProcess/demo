@@ -1,4 +1,4 @@
-package com.example.demo.test.java8.fun;
+package com.example.demo.test.java8.fun.demo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

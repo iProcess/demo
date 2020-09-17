@@ -1,4 +1,4 @@
-package com.example.demo.test.java8.fun;
+package com.example.demo.test.java8.fun.demo;
 
 import cn.hutool.core.util.NumberUtil;
 import org.apache.commons.lang3.StringUtils;
