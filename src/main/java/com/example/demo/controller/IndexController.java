@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Customer;
 import com.example.demo.domain.Member;
+import com.example.demo.util.LoginContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import java.util.Map;
 /**
  * 注意：@RestController相当于@Controller和@ResponseBody组合
  */
+@Slf4j
 @RequestMapping("/index")
 //@Controller
 @RestController
@@ -41,7 +44,8 @@ public class IndexController {
     @GetMapping("/init")
 //    @ResponseBody
     public Map init(){
-        System.out.println("init");
+        log.info("init");
+        log.info(LoginContext.getLoginContext().getPin());
         Map<Integer, Object> map = new HashMap<>(16);
         map.put(1, "one");
         map.put(2, "two");

@@ -1,19 +1,19 @@
 package com.example.demo.interceptor;
 
-import com.example.demo.util.BrandLoginContextHolder;
-import com.example.demo.util.WebHelper;
-import org.springframework.util.StringUtils;
-import org.springframework.web.method.HandlerMethod;
+import com.example.demo.util.LoginContext;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class LoginInterceptor implements HandlerInterceptor {
+@Slf4j
+@Component
+public class DemoLoginInterceptor implements HandlerInterceptor {
 
     /**
      * 进入controller层之前拦截请求
@@ -30,36 +30,14 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        System.out.println("执行到了preHandle方法");
-        System.out.println(handler);
-        //判断用户是否登录
-//        if(request.getSession().getAttribute("session_user") == null){
-//
-//            response.sendRedirect("userLogin");
-//            return false;
-//        }
-        WebHelper webHelper = getWebHelper(request);
-        BrandLoginContextHolder.setLoginBrandInfo(webHelper);
-        if(StringUtils.isEmpty(webHelper.getUserName())){
-            response.sendRedirect("/logerror?error=106");
+        log.info("DemoLoginInterceptor-->preHandle");
+        if(!"sjc".equals(LoginContext.getLoginContext().getPin())){
+            Map<String, Object> mapResult = new HashMap<>();
+            mapResult.put("403", "无权限!");
+            response.getWriter().println(mapResult);
             return false;
         }
-
         return true;
-    }
-
-    /**
-     * 设置 WebHelper
-     * @param request
-     * @return
-     */
-    private WebHelper getWebHelper(HttpServletRequest request) {
-        WebHelper webHelper = new WebHelper();
-        webHelper.setSex("男");
-        webHelper.setUserId(123456789L);
-        webHelper.setUserName("测试用户名");
-        return webHelper;
     }
 
     /**
@@ -75,16 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-        System.out.println("执行到了postHandle方法");
-
-        if (modelAndView != null) {
-            WebHelper webHelper = BrandLoginContextHolder.getLoginBrandInfo();
-            modelAndView.addObject("userId", webHelper.getUserId());
-            modelAndView.addObject("userName", webHelper.getUserName());
-            modelAndView.addObject("sex", webHelper.getSex());
-        }
-
+        log.info("DemoLoginInterceptor-->postHandle");
     }
 
     /**
@@ -98,8 +67,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        BrandLoginContextHolder.removeLoginBrandInfo();
-        System.out.println("执行到了afterCompletion方法");
+        log.info("DemoLoginInterceptor-->afterCompletion");
     }
 
 }
