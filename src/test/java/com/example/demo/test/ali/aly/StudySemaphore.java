@@ -12,22 +12,19 @@ public class StudySemaphore {
         Semaphore semaphore = new Semaphore(3);
         for (int i = 0; i < 10; i++){
             final long num = i;
-            executorService.submit(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        //获取许可
-                        semaphore.acquire();
-                        //执行
-                        System.out.println("Accessing: " + num);
-                        //Thread.sleep(new Random().nextInt(5000)); // 模拟随机执行时长
-                        Thread.sleep(10000);
-                        //释放
-                        semaphore.release();
-                        System.out.println("Release..." + num);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            executorService.submit(() -> {
+                try {
+                    //获取许可
+                    semaphore.acquire();
+                    //执行
+                    System.out.println("Accessing: " + num);
+                    //Thread.sleep(new Random().nextInt(5000)); // 模拟随机执行时长
+                    Thread.sleep(10000);
+                    //释放
+                    semaphore.release();
+                    System.out.println("Release..." + num);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             });
         }
