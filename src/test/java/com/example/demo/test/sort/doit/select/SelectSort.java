@@ -4,6 +4,7 @@ import com.example.demo.test.sort.doit.DoItUtil;
 
 /**
  * 3、选择排序
+ * 最佳情况：T(n) = O(n2) 最差情况：T(n) = O(n2) 平均情况：T(n) = O(n2)
  */
 public class SelectSort {
 

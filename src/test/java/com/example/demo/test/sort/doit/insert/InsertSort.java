@@ -4,6 +4,7 @@ import com.example.demo.test.sort.doit.DoItUtil;
 
 /**
  * 2、插入排序
+ * 最佳情况：T(n) = O(n) 最坏情况：T(n) = O(n2) 平均情况：T(n) = O(n2)
  */
 public class InsertSort {
 

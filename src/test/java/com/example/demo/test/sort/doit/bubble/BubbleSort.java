@@ -9,6 +9,7 @@ public class BubbleSort {
 
     /**
      * 升序排列
+     * 算法分析：最佳情况：T(n) = O(n)  最差情况：T(n) = O(n2)  平均情况：T(n) = O(n2)
      * @param array
      */
     public void bubbleSort(int[] array){

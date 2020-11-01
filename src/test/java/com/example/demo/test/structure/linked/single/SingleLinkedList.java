@@ -13,12 +13,16 @@ public class SingleLinkedList {
 
     public Object addHead(Object object){
         Node newNode = new Node(object);
-        if(head == null){
-            head = newNode;
-        }else {
+//        if(head == null){
+//            head = newNode;
+//        }else {
+//            newNode.setNext(head);
+//            head = newNode;
+//        }
+        if (head != null) {
             newNode.setNext(head);
-            head = newNode;
         }
+        head = newNode;
         size++;
         return object;
     }
