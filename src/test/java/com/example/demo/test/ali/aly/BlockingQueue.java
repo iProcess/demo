@@ -15,7 +15,7 @@ public class BlockingQueue {
         while (true) {
             // 每隔 1000 毫秒生产一个商品
             try {
-//                Thread.sleep(1000);
+                Thread.sleep(1000);
                 goods.put(new Object());
                 System.out.println("Produce goods, total: " + goods.size());
             } catch (InterruptedException e) {
@@ -28,7 +28,7 @@ public class BlockingQueue {
         while (true) {
             // 每隔 5000 毫秒消费一个商品
             try {
-//                Thread.sleep(5000);
+                Thread.sleep(5000);
                 goods.take();
                 System.out.println("Consume goods, total: " + goods.size());
             } catch (InterruptedException e) {
@@ -38,7 +38,7 @@ public class BlockingQueue {
     });
 
     public void run(){
-//        producer.start();
+        producer.start();
         consumer.start();
     }
 
