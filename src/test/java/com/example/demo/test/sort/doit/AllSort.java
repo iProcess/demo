@@ -8,6 +8,13 @@ import java.util.Random;
 public class AllSort {
     public static void main(String[] args) {
         int[] array = createArray(10);
+
+        int[] bubbleSort = new int[array.length];
+        copyArray(array, bubbleSort);
+        bubbleSort(bubbleSort);
+        System.out.println("冒泡排序后：");
+        print(bubbleSort);
+
         int[] selectArray = new int[array.length];
         copyArray(array, selectArray);
         selectSort(selectArray);
@@ -18,6 +25,15 @@ public class AllSort {
     }
 
     //1、冒泡排序
+    public static void bubbleSort(int[] array){
+        for(int i = 1; i < array.length; i++){
+            for(int j = 0; j < array.length - i; j++){
+                if(array[j] > array[j + 1]){
+                    swap(array, j, j + 1);
+                }
+            }
+        }
+    }
 
     //2、插入排序
 
