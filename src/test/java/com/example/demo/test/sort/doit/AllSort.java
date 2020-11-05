@@ -12,16 +12,16 @@ public class AllSort {
         int[] bubbleSort = new int[array.length];
         copyArray(array, bubbleSort);
         bubbleSort(bubbleSort);
-        System.out.println("冒泡排序后：");
-        print(bubbleSort);
 
         int[] selectArray = new int[array.length];
         copyArray(array, selectArray);
         selectSort(selectArray);
-        System.out.println("选择排序后：");
-        print(selectArray);
-        System.out.println("原数组：");
-        print(array);
+
+        int[] insertArray = new int[array.length];
+        copyArray(array, insertArray);
+        insertSort(insertArray);
+
+        print("原数组：", array);
     }
 
     //1、冒泡排序
@@ -33,9 +33,20 @@ public class AllSort {
                 }
             }
         }
+        print("冒泡排序：", array);
     }
 
     //2、插入排序
+    public static void insertSort(int[] array){
+        for(int i = 1; i < array.length; i++){
+            for(int j = 0; j < i; j++){
+                if(array[j] > array[i]){
+                    swap(array, j, i);
+                }
+            }
+        }
+        print("插入排序：", array);
+    }
 
     //3、选择排序
     public static void selectSort(int[] array){
@@ -48,6 +59,7 @@ public class AllSort {
             }
             swap(array, array.length - i, index);
         }
+        print("选择排序：", array);
     }
 
     //4、快速排序
@@ -58,12 +70,13 @@ public class AllSort {
         for(int i = 0; i < size; i++){
             array[i] = random.nextInt(100) - random.nextInt(100);
         }
-        System.out.println("原数组：");
-        print(array);
+        System.out.println();
+        print("原数组：", array);
         return array;
     }
 
-    public static void print(int[] array){
+    public static void print(String sortName, int[] array){
+        System.out.print(sortName + " ");
         for(int i : array){
             System.out.print(i + " ");
         }
