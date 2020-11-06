@@ -37,7 +37,7 @@ public class CSVUtil1 {
 
     public static void main(String[] args) throws Exception {
         String table = "ecopromo.app_ecodd_tool_effect_c_light_di_order_pop_v2";
-        String filePath = "/Users/shijincheng/Downloads/app_ecodd_tool_effect_c_light_di_order_pop_v2.csv";
+        String filePath = "/Users/shijincheng/Downloads/app_ecodd_tool_effect_c_light_di_order_pop_v2_mom.csv";
         List<String> insertSql = createTableSql(table, filePath);
         for(String sql : insertSql){
             System.out.println(sql);
