@@ -8,28 +8,28 @@ import java.util.Random;
 public class AllSort {
     public static void main(String[] args) {
         int[] array = createArray(10);
-        //1、冒泡排序
+        //1、冒泡排序 最佳情况：T(n) = O(n)  最差情况：T(n) = O(n2)  平均情况：T(n) = O(n2)
         int[] bubbleSort = new int[array.length];
         copyArray(array, bubbleSort);
         long bubbleStart = System.currentTimeMillis();
         bubbleSort(bubbleSort);
         System.out.println("冒泡排序 耗时：" + (System.currentTimeMillis() - bubbleStart));
 
-        //2、选择排序
+        //2、选择排序 最佳情况：T(n) = O(n2) 最差情况：T(n) = O(n2) 平均情况：T(n) = O(n2)
         int[] selectArray = new int[array.length];
         copyArray(array, selectArray);
         long selectStart = System.currentTimeMillis();
         selectSort(selectArray);
         System.out.println("选择排序 耗时：" + (System.currentTimeMillis() - selectStart));
 
-        //3、插入排序
+        //3、插入排序 最佳情况：T(n) = O(n) 最坏情况：T(n) = O(n2) 平均情况：T(n) = O(n2)
         int[] insertArray = new int[array.length];
         copyArray(array, insertArray);
         long insertStart = System.currentTimeMillis();
         insertSort(insertArray);
         System.out.println("插入排序 耗时：" + (System.currentTimeMillis() - insertStart));
 
-        //4、快速排序
+        //4、快速排序 最佳情况：T(n) = O(nlogn) 最差情况：T(n) = O(n2) 平均情况：T(n) = O(nlogn)
         int[] quickArray = new int[array.length];
         copyArray(array, quickArray);
         long quickStart = System.currentTimeMillis();
