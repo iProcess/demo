@@ -8,18 +8,34 @@ import java.util.Random;
 public class AllSort {
     public static void main(String[] args) {
         int[] array = createArray(10);
-
+        //1、冒泡排序
         int[] bubbleSort = new int[array.length];
         copyArray(array, bubbleSort);
+        long bubbleStart = System.currentTimeMillis();
         bubbleSort(bubbleSort);
+        System.out.println("冒泡排序 耗时：" + (System.currentTimeMillis() - bubbleStart));
 
+        //2、选择排序
         int[] selectArray = new int[array.length];
         copyArray(array, selectArray);
+        long selectStart = System.currentTimeMillis();
         selectSort(selectArray);
+        System.out.println("选择排序 耗时：" + (System.currentTimeMillis() - selectStart));
 
+        //3、插入排序
         int[] insertArray = new int[array.length];
         copyArray(array, insertArray);
+        long insertStart = System.currentTimeMillis();
         insertSort(insertArray);
+        System.out.println("插入排序 耗时：" + (System.currentTimeMillis() - insertStart));
+
+        //4、快速排序
+        int[] quickArray = new int[array.length];
+        copyArray(array, quickArray);
+        long quickStart = System.currentTimeMillis();
+        quickSort(quickArray, 0, quickArray.length - 1);
+        print("快速排序：", quickArray);
+        System.out.println("快速排序 耗时：" + (System.currentTimeMillis() - quickStart));
 
         print("原数组：", array);
     }
@@ -63,12 +79,40 @@ public class AllSort {
     }
 
     //4、快速排序
+    public static void quickSort(int[] array, int start, int end){
+        if(start < end){
+            int i = start;
+            int j = end;
+            int x = array[i];
+            while (i < j){
+                while (i < j && array[j] > x){
+                    j--;
+                }
+                if(i < j){
+                    array[i] = array[j];
+                    i++;
+                }
+                while (i < j && array[i] < x){
+                    i++;
+                }
+                if(i < j){
+                    array[j] = array[i];
+                    j--;
+                }
+            }
+            array[i] = x;
+            quickSort(array, start, i - 1);
+            quickSort(array, i + 1, end);
+        }
+    }
+
+
 
     public static int[] createArray(int size){
         Random random = new Random();
         int[] array = new int[size];
         for(int i = 0; i < size; i++){
-            array[i] = random.nextInt(100) - random.nextInt(100);
+            array[i] = random.nextInt(100000) - random.nextInt(100000);
         }
         System.out.println();
         print("原数组：", array);
