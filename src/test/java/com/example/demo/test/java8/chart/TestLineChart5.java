@@ -9,37 +9,37 @@ public class TestLineChart5 {
     public static void main(String[] args) {
         List<Map<String, Object>> results = new ArrayList<>();
         Map<String, Object> map1 = new HashMap<>();
-        map1.put("timestamp", "2020-11-01");
+        map1.put("timestamp", "20201101");
         map1.put("uv", "123");
         map1.put("actiNum", "456");
         map1.put("mainUv", "100");
 
         Map<String, Object> map2 = new HashMap<>();
-        map2.put("timestamp", "2020-11-02");
+        map2.put("timestamp", "20201102");
         map2.put("uv", "789");
         map2.put("actiNum", "147");
         map2.put("mainUv", "200");
 
         Map<String, Object> map3 = new HashMap<>();
-        map3.put("timestamp", "2020-11-03");
+        map3.put("timestamp", "20201103");
         map3.put("uv", "258");
         map3.put("actiNum", "369");
         map3.put("mainUv", "300");
 
         Map<String, Object> map4 = new HashMap<>();
-        map4.put("timestamp", "2020-11-15");
+        map4.put("timestamp", "20201115");
         map4.put("uv", "2581");
         map4.put("actiNum", "3691");
         map4.put("mainUv", "3001");
 
         Map<String, Object> map5 = new HashMap<>();
-        map5.put("timestamp", "2020-11-20");
+        map5.put("timestamp", "20201120");
         map5.put("uv", "2582");
         map5.put("actiNum", "3692");
         map5.put("mainUv", "3002");
 
         Map<String, Object> map6 = new HashMap<>();
-        map6.put("timestamp", "2020-11-26");
+        map6.put("timestamp", "20201126");
         map6.put("uv", "2583");
         map6.put("actiNum", "3693");
         map6.put("mainUv", "3003");
@@ -51,15 +51,15 @@ public class TestLineChart5 {
         results.add(map5);
         results.add(map6);
 
-        List<String> dateRange = DateUtil.getDates("2020-11-01", "2020-11-30");
+        List<String> dateRange = DateUtil.getDatesFormat("20201101", "20201130", DateUtil.YYYYMMDD, DateUtil.YYYYMMDD);
 
-        LineChart chart1 = lineChart(dateRange, results, "timestamp");
+        LineChart chart1 = lineChart(dateRange, results, "timestamp", DateUtil.YYYYMMDD);
         System.out.println(JSON.toJSONString(chart1));
 
     }
     
     
-    public static LineChart lineChart(List<String> dateRange, List<Map<String, Object>> results, String dateField){
+    public static LineChart lineChart(List<String> dateRange, List<Map<String, Object>> results, String dateField, String datePattern){
         results = fill(dateRange, results, dateField);
         Map<String, List<LineChartData>> groupMap = results.stream()
                 .map(map -> map.entrySet().stream().map(entry -> {
@@ -76,8 +76,13 @@ public class TestLineChart5 {
                     return new LineChartData(entry.getKey(), data);
                 }).collect(Collectors.toList());
 
-        List<String> categories = chartDataList.stream().filter(c -> dateField.equals(c.getCode())).collect(Collectors.toList()).get(0).getData();
+        //List<String> categories = chartDataList.stream().filter(c -> dateField.equals(c.getCode())).collect(Collectors.toList()).get(0).getData();
         List<LineChartData> series = chartDataList.stream().filter(c -> !dateField.equals(c.getCode())).collect(Collectors.toList());
+
+        List<String> categories = chartDataList.stream().filter(c -> dateField.equals(c.getCode()))
+                .map(d -> d.getData()).flatMap(t -> t.stream()).map(date -> DateUtil.format(date, datePattern, DateUtil.MM_DD))
+                .collect(Collectors.toList());
+
 
         return new LineChart(categories, series);
     }

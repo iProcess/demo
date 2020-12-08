@@ -1,10 +1,13 @@
 package com.example.demo.test.java8.chart;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,12 +17,34 @@ import java.util.List;
 
 @Slf4j
 public class DateUtil {
+
+    public static void main(String[] args) {
+//        String begin = "2020-09-28 23:59:57.0";
+//        String end = "2020-10-28 23:59:57.0";
+//        String srcPattern = YYYY_MM_DD_HH_MM_SS_SSS;
+//        String targetPattern = YYYYMMDD;
+//        String begin = "2020-09-28";
+//        String end = "2020-10-28";
+//        String srcPattern = YYYY_MM_DD;
+//        String targetPattern = MM_DD;
+//        List<String> listDate = getDatesFormat(begin, end, srcPattern, targetPattern);
+//        System.out.println(JSON.toJSONString(listDate));
+
+        String begin = "20200928";
+        String date = format(begin, YYYYMMDD, MM_DD);
+        System.out.println(date);
+
+    }
+
     /**
      * 一天的毫秒数
      */
     public static final long MILLS_DAY = 1000L * 60L * 60L * 24L;
     public static final String YYYYMMDD = "yyyyMMdd";
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
+    public static final String YYYY_MM_DD_HH_MM_SS_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
+    public static final String MM_DD = "MM-dd";
+
     /**
      * 字符类型转换为时间类型
      * @param date
@@ -33,14 +58,28 @@ public class DateUtil {
      * @param date
      * @return
      */
-    public static Date parseDate(String date, String parsePatterns){
+    public static Date parseDate(String date, String parsePattern){
         try {
-            return DateUtils.parseDate(date, parsePatterns);
+            return DateUtils.parseDate(date, parsePattern);
         } catch (ParseException e) {
             log.error("parseDate error:", e);
         }
         return null;
     }
+
+    /**
+     * 将字符串日期格式进行转换
+     * @param date 字符串日期
+     * @param srcPattern 源格式
+     * @param targetPattern 目标格式
+     * @return
+     */
+    public static String format(String date, String srcPattern, String targetPattern){
+        Date targetDate = parseDate(date, srcPattern);
+        SimpleDateFormat sdf = new SimpleDateFormat(targetPattern);
+        return sdf.format(targetDate);
+    }
+
     /**
      * 获取某天在一年中的第几周
      * @return
@@ -52,9 +91,9 @@ public class DateUtil {
      * 获取某天在一年中的第几周
      * @return
      */
-    public static int getWeekOfYear(String date, String parsePatterns){
+    public static int getWeekOfYear(String date, String parsePattern){
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(parseDate(date, parsePatterns));
+        calendar.setTime(parseDate(date, parsePattern));
         //设置星期一为一周开始的第一天
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.WEEK_OF_YEAR);
@@ -71,9 +110,9 @@ public class DateUtil {
      * 获取某天在一年中的第几周
      * @return
      */
-    public static String getWeekOfYearStr(String date, String parsePatterns){
+    public static String getWeekOfYearStr(String date, String parsePattern){
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(parseDate(date, parsePatterns));
+        calendar.setTime(parseDate(date, parsePattern));
         //设置星期一为一周开始的第一天
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         int week = calendar.get(Calendar.WEEK_OF_YEAR);
@@ -82,20 +121,22 @@ public class DateUtil {
 
     /**
      * 获取一个时间范围内的所有日期
-     * @param begin 开始日期
-     * @param end   结束日期
+     * @param begin 开始时间
+     * @param end 结束时间
+     * @param srcPattern 源格式
+     * @param targetPattern 目标格式
      * @return
      */
-    public static List<String> getDates(String begin, String end) {
+    public static List<String> getDatesFormat(String begin, String end, String srcPattern, String targetPattern) {
         List<String> dates = new ArrayList<>();
-        Date beginDate = parseDate(begin);
-        Date endDate = parseDate(end);
+        Date beginDate = parseDate(begin, srcPattern);
+        Date endDate = parseDate(end, srcPattern);
         if (endDate.compareTo(beginDate) == 0) {
-            dates.add(begin);
+            dates.add(FastDateFormat.getInstance(targetPattern).format(beginDate));
             return dates;
         }
         while (beginDate.compareTo(endDate) <= 0) {
-            dates.add(DateFormatUtils.ISO_8601_EXTENDED_DATE_FORMAT.format(beginDate));
+            dates.add(FastDateFormat.getInstance(targetPattern).format(beginDate));
             beginDate = getNextDay(beginDate);
         }
         return dates;
