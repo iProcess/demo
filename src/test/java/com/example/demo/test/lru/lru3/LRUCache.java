@@ -19,7 +19,8 @@ public class LRUCache<K,V> extends LinkedHashMap<K,V> {
     public LRUCache(int cacheSize){
         //设置hashmap的初始大小，同时最后一个true指的是让linkedhashmap按照访问顺序来进行排序，
         //最近访问的放在头，最老访问的放在尾
-        super((int)Math.ceil(cacheSize / 0.75) + 1,0.75f,true);
+        //super((int)Math.ceil(cacheSize / 0.75) + 1,0.75f,true);
+        super(cacheSize,0.75f,true);
         CACHE_SIZE = cacheSize;
     }
 
@@ -30,6 +31,9 @@ public class LRUCache<K,V> extends LinkedHashMap<K,V> {
     }
 
     public static void main(String[] args) {
+        System.out.println(5 / 0.75);
+        System.out.println(Math.ceil(5 / 0.75));
+
         LRUCache<Integer, Integer> cache = new LRUCache<>(5);
         cache.put(1, 1);
         cache.put(2, 2);
