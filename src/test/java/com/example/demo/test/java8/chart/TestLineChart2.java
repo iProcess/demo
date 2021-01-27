@@ -30,7 +30,7 @@ public class TestLineChart2 {
         results.add(map2);
         results.add(map3);
 
-        List<String> dateRange = DateUtil.getDates("2020-11-01", "2020-11-30");
+        List<String> dateRange = DateUtil.getDatesFormat("2020-11-01", "2020-11-30", DateUtil.YYYY_MM_DD, DateUtil.YYYYMMDD);
 
         LineChart chart = encaseTrend(dateRange, results);
 
