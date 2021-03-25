@@ -86,20 +86,37 @@ public class AddLinkedList {
     }
 
     public static void main(String[] args) {
-        AddLinkedList list1 = new AddLinkedList();
-        list1.addHead(3);
-        list1.addHead(4);
-        list1.addHead(2);
-        list1.display();
+//        AddLinkedList list1 = new AddLinkedList();
+//        list1.addHead(3);
+//        list1.addHead(4);
+//        list1.addHead(2);
+//        list1.display();
+//
+//        AddLinkedList list2 = new AddLinkedList();
+//        list2.addHead(4);
+//        list2.addHead(6);
+//        list2.addHead(5);
+//        list2.display();
+//
+//        Node node1 = list1.addTwoNumbers(list1.head, list2.head);
+//        list1.display(node1);
 
-        AddLinkedList list2 = new AddLinkedList();
-        list2.addHead(4);
-        list2.addHead(6);
-        list2.addHead(5);
-        list2.display();
 
-        Node node = list1.addTwoNumbers(list1.head, list2.head);
-        list1.display(node);
+        AddLinkedList list3 = new AddLinkedList();
+        list3.addHead(3);
+        list3.addHead(4);
+        list3.addHead(2);
+        list3.display();
+
+        AddLinkedList list4 = new AddLinkedList();
+        list4.addHead(9);
+        list4.addHead(6);
+        list4.addHead(9);
+        list4.addHead(9);
+        list4.display();
+
+        Node node2 = list3.addTwoNumbers(list3.head, list4.head);
+        list3.display(node2);
 
     }
 
