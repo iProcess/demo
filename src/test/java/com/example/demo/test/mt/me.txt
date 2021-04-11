@@ -49,4 +49,9 @@ return its level order traversal as:
 3、MQ和RPC比较的优缺点？
 4、httpclient调用服务端，如何进行优化？
 5、如何保证数据一致性，两阶段和三阶段提交的过程，缺点是什么，注意逻辑性描述，讲清楚原理。
+6、newFixedThreadPool和newCachedThreadPool的缺点是什么？
+newFixedThreadPool阻塞队列使用的是LinkedBlockingQueue，大小为整数最大值在线程池空闲时，即线程池中没有可运行任务时，它也不会释放工作线程，还会占用一定的系统资源
+newCachedThreadPool核心池最大为Integer.MAX_VALUE,阻塞队列使用的是SynchronousQueue。是一个直接提交的阻塞队列
+当提交新任务时，如果没有空闲线程，则创建新线程执行任务，会导致一定的系统开销
+
 
