@@ -1,5 +1,7 @@
 package com.example.demo.test.ali.aly;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 1、编写代码，使用3个线程，1个线程打印X，一个线程打印Y，一个线程打印Z，同时执行连续打印10次"XYZ"
  * https://www.cnblogs.com/gaopengpy/p/12913519.html
@@ -16,7 +18,7 @@ public class ThreadPrint {
      * volatile保证了内存可见性，当a值变更时，其它线程能立即获取到最新值。
      * 注：a即使是静态变量也不能保证值发生变化后，其它线程能立即获取到最新值。
      */
-//    private static Integer a = 0;
+    //private static Integer a = 0;
     private volatile Integer a = 0;
 
     Thread one = new Thread(new Runnable() {
@@ -27,11 +29,11 @@ public class ThreadPrint {
                     System.out.print("X");
                     a = 1;
                 }
-//                    try {
-//                        TimeUnit.SECONDS.sleep(1);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
             }
         }
     });
@@ -44,11 +46,11 @@ public class ThreadPrint {
                     System.out.print("Y");
                     a = 2;
                 }
-//                    try {
-//                        TimeUnit.SECONDS.sleep(1);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
             }
         }
     });
@@ -66,11 +68,11 @@ public class ThreadPrint {
                     a = 0;
 
                 }
-//                    try {
-//                        TimeUnit.SECONDS.sleep(1);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
             }
         }
     });
