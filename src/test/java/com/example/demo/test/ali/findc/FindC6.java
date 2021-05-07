@@ -1,11 +1,13 @@
 package com.example.demo.test.ali.findc;
 
-
+/**
+ * （有误）
+ */
 public class FindC6 {
 
     public static void main(String[] args) {
 
-        char[] cs = {'A','B','C'};
+        char[] cs = {'A','B','C', 'B'};
 
         int[] c = new int[256];
         int i = 0;

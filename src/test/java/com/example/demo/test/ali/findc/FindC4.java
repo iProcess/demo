@@ -5,7 +5,7 @@ public class FindC4 {
     public static void main(String[] args) {
         int max = 1;
         //String[] strs = {"a", "b", "f", "a", "d", "c", "e", "d", "a", "d"};
-        String[] strs = {"long", "long", "ago"};
+        String[] strs = {"long", "long1", "ago", "ago"};
         for (int i = 0; i < strs.length - 1; i++) {
             int count = 1;
             for (int j = i + 1; j < strs.length; j++) {

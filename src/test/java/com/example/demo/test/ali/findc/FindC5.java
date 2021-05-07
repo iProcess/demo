@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * https://wenwen.sogou.com/z/q741342661.htm?tt_from=weixin&utm_source=weixin&utm_medium=toutiao_ios&utm_campaign=client_share&wxshare_count=1
+ * 输入一串字符，找出出现最多的字符（有误）
  */
 public class FindC5 {
 
