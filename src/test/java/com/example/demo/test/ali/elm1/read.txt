@@ -1,0 +1,10 @@
+1、快速排序；
+2、两个线程交叉打印AB（Semaphore如何实现）；
+3、CPU使用率高和内存使用率高如何排查；
+4、hashmap
+
+经典线程面试题-两个线程交替打印
+https://blog.csdn.net/afsvsv/article/details/86521789
+
+
+https://segmentfault.com/a/1190000016773721
